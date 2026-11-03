@@ -9,6 +9,8 @@ services:
     image: nginx:1.30-alpine
     ports:
       - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
     volumes:
       - ./proxy:/etc/nginx/conf.d:ro
+      - ./certs:/etc/nginx/certs:ro
     restart: unless-stopped
