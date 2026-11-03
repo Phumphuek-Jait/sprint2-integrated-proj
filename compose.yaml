@@ -1,0 +1,14 @@
+services:
+  frontend:
+    build:                        # an image you own: built from a directory
+      context: ./frontend
+      dockerfile: ./frontend/Dockerfile        # only when it is not called Dockerfile
+    restart: unless-stopped
+
+  proxy:
+    image: nginx:1.30-alpine
+    ports:
+      - "0.0.0.0:80:80"
+    volumes:
+      - ./proxy:/etc/nginx/conf.d:ro
+    restart: unless-stopped
