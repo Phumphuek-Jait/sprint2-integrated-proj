@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "start": "node src/server.js",
+  "dev": "node --watch src/server.js",
+  "test": "echo \"Error: no test specified\" && exit 1"
+  }	,
   "private": true,
   "dependencies": {
     "express": "^5.2.1",

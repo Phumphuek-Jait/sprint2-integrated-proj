@@ -14,3 +14,11 @@ services:
       - ./proxy:/etc/nginx/conf.d:ro
       - ./certs:/etc/nginx/certs:ro
     restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    expose:
+      - "3000"
