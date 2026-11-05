@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Schedule</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <h1 name="Class Schedule">Class Schedule</h1>
+    <div id="buttons">
+        <button id="All" name="All" aria-pressed="true">All</button>
+        <button id="year_1" name="Year 1" aria-pressed="false">Year 1</button>
+        <button id="year_2" name="Year 2" aria-pressed="false">Year 2</button>
+        <button id="year_3" name="Year 3" aria-pressed="false">Year 3</button>
+        <button id="year_4" name="Year 4" aria-pressed="false">Year 4</button>
+    </div>
+    <table id="schedule" data-testid="schedule-table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Section</th>
+                <th>Group</th>
+                <th>day</th>
+                <th>Time</th>
+                <th>Weeks</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody id="schedule-body">
+            <tr data-testid="schedule-row">
+                <td data-testid="code"></td>
+                <td data-testid="title"></td>
+                <td data-testid="type"></td>
+                <td data-testid="section"></td>
+                <td data-testid="group"></td>
+                <td data-testid="day"></td>
+                <td data-testid="time"></td>
+                <td data-testid="weeks"></td>
+                <td data-testid="remarks"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
