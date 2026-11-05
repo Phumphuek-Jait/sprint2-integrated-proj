@@ -1,8 +1,8 @@
 services:
   frontend:
-    build:                        # an image you own: built from a directory
+    build: # an image you own: built from a directory
       context: ./frontend
-      dockerfile: Dockerfile        # only when it is not called Dockerfile
+      dockerfile: Dockerfile # only when it is not called Dockerfile
     restart: unless-stopped
 
   db:
@@ -11,7 +11,7 @@ services:
       - class_schdule-db-data:/var/lib/mysql
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      test: ['CMD', 'mysqladmin', 'ping', '-h', '127.0.0.1']
       interval: 5s
       timeout: 3s
       retries: 12
@@ -19,8 +19,8 @@ services:
   proxy:
     image: nginx:1.30-alpine
     ports:
-      - "0.0.0.0:80:80"
-      - "0.0.0.0:443:443"
+      - '0.0.0.0:80:80'
+      - '0.0.0.0:443:443'
     volumes:
       - ./proxy:/etc/nginx/conf.d:ro
       - ./certs:/etc/nginx/certs:ro
@@ -32,8 +32,6 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     expose:
-      - "3000"
-volumes:
-  class_schdule-db-data:
-    external: true
-    name: class_schdule-db-data
+      - '3000'
+    volumes:
+      - ./backend/src/configs:/app/src/configs:ro
