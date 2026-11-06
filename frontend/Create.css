@@ -1,0 +1,45 @@
+#buttons{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#buttons button{
+    background-color: white;
+    color: #234e70;
+    border: 2px solid #234e70;
+    border-radius: 8px;
+    padding: 8px 18px;
+    border-color: #234e70;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    /* transition: all 0.2s; */
+}
+
+#buttons button:hover{
+    background-color: #234e70;
+    color: white;
+}
+
+#schedule {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  /* overflow: hidden; */
+}
+
+#schedule th, #schedule td {
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+  font-size: 14px;
+}
+
+#schedule th {
+  background-color: #f8fafc;
+  color: #0f2942;
+  font-weight: 600;
+}
