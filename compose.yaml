@@ -32,8 +32,8 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
-      frontend:
-        condition: service_started
+      db:
+        condition: service_healthy
     expose:
       - '3000'
     volumes:
