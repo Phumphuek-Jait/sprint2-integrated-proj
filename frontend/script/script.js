@@ -47,7 +47,7 @@ function newRow(data){
 
     const classDay= document.createElement("td")
     classDay.dataset.testid = "day"
-    classDay.textContent= data?.day ?? ""
+    classDay.textContent= toCapitalize(data?.day)
 
     const classTime= document.createElement("td")
     classTime.dataset.testid = "time"
@@ -73,4 +73,10 @@ function emptySchedule(){
     emptyCell.textContent = "There is currently no class schedule. Please check back later."
     emptyRow.append(emptyCell)
     scheduleBody.append(emptyRow)
+}
+
+
+function toCapitalize(str) {
+  if (!str) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
