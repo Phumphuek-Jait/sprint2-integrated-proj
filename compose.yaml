@@ -31,10 +31,20 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     restart: unless-stopped
-    expose:
-      - '3000'
+    ports:
+      - '127.0.0.1:3000:3000'
     volumes:
       - ./backend/src/configs:/app/src/configs:ro
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/api/v1/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 15s
 
 volumes:
   class_schdule-db-data:
