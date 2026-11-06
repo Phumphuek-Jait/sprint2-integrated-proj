@@ -35,3 +35,8 @@ services:
       - '3000'
     volumes:
       - ./backend/src/configs:/app/src/configs:ro
+
+volumes:
+  class_schdule-db-data:
+    external: true
+    name: class_schdule-db-data
