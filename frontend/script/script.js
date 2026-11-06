@@ -3,7 +3,7 @@ import { loadDatas, deleteData, addData, editData } from './service.js'
 const scheduleTable = document.querySelector("#schedule")
 const scheduleBody = scheduleTable.querySelector("#schedule-body")
 
-showSchedule
+showSchedule()
 
 async function showSchedule() {
     const scheduleDatas = await loadDatas()
