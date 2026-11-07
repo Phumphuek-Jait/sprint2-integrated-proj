@@ -6,64 +6,39 @@ const scheduleBody = scheduleTable.querySelector("#schedule-body")
 showSchedule()
 
 async function showSchedule() {
-    const scheduleDatas = await loadDatas()
-
-    if (!scheduleDatas || scheduleDatas.length === 0) {
-        emptySchedule()
-        return
+    try{
+        const scheduleDatas = await loadDatas()
+        
+        if (!scheduleDatas || scheduleDatas.length === 0) {
+            emptySchedule()
+            return
+        }
+        
+        const scheduleFragment = document.createDocumentFragment()
+        scheduleDatas.forEach(data => {
+            const row = newRow(data)
+            scheduleFragment.append(row)
+        });
+        scheduleBody.append(scheduleFragment)
     }
-
-    const scheduleFragment = document.createDocumentFragment()
-    scheduleDatas.forEach(data => {
-        const row = newRow(data)
-        scheduleFragment.append(row)
-    });
-    scheduleBody.append(scheduleFragment)
+    catch (error){
+        console.error(error)
+    }
 }
 
 function newRow(data){
     const scheduleRow = document.createElement("tr")
     scheduleRow.dataset.testid = "schedule-row"
 
-    const classCode= document.createElement("td")
-    classCode.dataset.testid = "code"
-    classCode.textContent= data?.code ?? ""  
-
-    const classTitle= document.createElement("td")
-    classTitle.dataset.testid = "title"
-    classTitle.textContent= data?.title ?? "" 
-    
-    const classType= document.createElement("td")
-    classType.dataset.testid = "type"
-    classType.textContent= data?.type ?? ""
-
-    const classSection= document.createElement("td")
-    classSection.dataset.testid = "section"
-    classSection.textContent= data?.section ?? ""
-
-    const classGroup= document.createElement("td")
-    classGroup.dataset.testid = "group"
-    classGroup.textContent= data?.group ?? ""
-
-    const classDay= document.createElement("td")
-    classDay.dataset.testid = "day"
-    classDay.textContent= toCapitalize(data?.day)
-
-    const classTime= document.createElement("td")
-    classTime.dataset.testid = "time"
-    classTime.textContent= data?.time ?? ""
-
-    const classWeeks= document.createElement("td")
-    classWeeks.dataset.testid = "weeks"
-    classWeeks.textContent= data?.weeks ?? ""
-
-    const classRemarks= document.createElement("td")
-    classRemarks.dataset.testid = "remarks"
-    classRemarks.textContent= data?.remarks ?? ""
-
-    scheduleRow.append(classCode, classTitle, classType, classSection, classGroup, classDay, classTime, classWeeks, classRemarks)
-
+    scheduleRow.append(createCell("code", data?.code), createCell("title", data?.title), createCell("type", data?.type), createCell("section", data?.section), createCell("group", data?.group), createCell("day", toCapitalize(data?.day)), createCell("time", data?.time), createCell("weeks", data?.weeks), createCell("remarks", data?.remarks))
     return scheduleRow
+}
+
+function createCell(testId, value) {
+    const cell = document.createElement("td")
+    cell.dataset.testid = testId
+    cell.textContent = value ?? ""
+    return cell
 }
 
 function emptySchedule(){
@@ -74,6 +49,7 @@ function emptySchedule(){
     emptyRow.append(emptyCell)
     scheduleBody.append(emptyRow)
 }
+
 
 
 function toCapitalize(str) {
