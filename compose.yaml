@@ -37,7 +37,7 @@ services:
     expose:
       - '3000'
     volumes:
-      - ./backend/src/configs:/app/src/configs:ro
+      - ./backend/.env:/app/.env:ro
     healthcheck:
       test:
         - CMD

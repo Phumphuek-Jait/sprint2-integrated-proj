@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -11,4 +6,53 @@ generator client {
 datasource db {
   provider = "mysql"
 }
-  
+
+model Course {
+  id               Int                @id @default(autoincrement())
+  code             String             @db.Char(6)
+  title            String             @db.VarChar(100)
+  type             CourseType
+  yearLevel        Int                @map("year_level") @db.TinyInt
+  schedules        CourseSchedule[]
+
+  @@unique([code, title], map: "uq_courses_code_title")
+  @@map("courses")
+}
+
+model CourseSchedule {
+  id            Int                             @id @default(autoincrement())
+  courseId      Int                             @map("course_id")
+  section       Int                             @db.UnsignedTinyInt
+  startWeek     Int                             @map("start_week") @db.TinyInt
+  endWeek       Int                             @map("end_week") @db.TinyInt
+  dayOfWeek     ScheduleDayOfWeek               @map("day_of_week")
+  startTime     DateTime                        @map("start_time") @db.Time(0)
+  endTime       DateTime                        @map("end_time") @db.Time(0)
+  room          String?                         @db.VarChar(20)
+  studentGroup  ScheduleStudentGroup?           @map("student_group")
+  remarks       String?                         @db.VarChar(255)
+  course        Course                          @relation(fields: [courseId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_schedule_course")
+
+  @@index([courseId], map: "fk_schedule_course")
+  @@map("courses_schedule")
+}
+
+enum CourseType {
+  CORE
+  ELECTIVE
+}
+
+enum ScheduleDayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum ScheduleStudentGroup {
+  A
+  B
+}

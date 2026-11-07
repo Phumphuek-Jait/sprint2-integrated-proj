@@ -1,4 +1,5 @@
 import express from 'express'
+import schedulesRouter from './routes/schedule-route.js'
 
 // import brandsRouter from "./routes/brand-route.js"
 
@@ -10,16 +11,14 @@ const app = express()
 app.use(express.json())
 app.use(queryParser())
 // Test queryParser
-app.get('/', (req, res) => {
-    console.log(req.pagination)
-    res.json(req.pagination)
-})
+
 app.get(`/api/v1/health`, (req, res) => {
     res.status(200).json({
-    "status": "ok",
-    "team": "ip26-line"
+        "status": "ok",
+        "team": "ip26-line"
+    })
 })
-})
+app.use('/api/v1/schedules', schedulesRouter)
 
 app.listen(3000, () => {
     console.log('server listening on port 3000')

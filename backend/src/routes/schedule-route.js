@@ -1,16 +1,15 @@
-import * as service from "../services/brand-service.js"
-import express from "express"
-import {apiResponse} from "../mappers/api-response.js";
+import express from 'express'
+import { apiResponse } from '../mappers/api-response.js'
+import * as service from '../services/schedule-service.js'
 import httpStatus from "http-status";
+
 
 const router = express.Router()
 
-router.get("/", async (req, res) => {
-    const {pagination} = req;
-    const objects = await service.getAllObjects()
-    await apiResponse(res, objects)
+router.get('/', async (req, res) => {
+    const schedules = await service.getAllObjects()
+    return apiResponse(res, schedules)
 })
-
 router.get("/:id", async (req, res) => {
     const id = req.params.id
     const object = await service.getObject(id)
@@ -32,5 +31,4 @@ router.delete("/:id", async (req, res) => {
     await service.removeObject(id)
     res.status(204).end()
 })
-
 export default router
