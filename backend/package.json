@@ -5,14 +5,18 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-  "start": "node src/server.js",
-  "dev": "node --watch src/server.js",
-  "test": "echo \"Error: no test specified\" && exit 1"
-  }	,
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "private": true,
   "dependencies": {
+    "@prisma/adapter-mariadb": "^7.10.1",
+    "@prisma/client": "^7.10.1",
     "express": "^5.2.1",
     "http-status": "^2.1.0",
-    "mysql2": "^3.24.3"
+    "mariadb": "^3.5.5",
+    "mysql2": "^3.24.3",
+    "prisma": "^7.10.1"
   }
 }
