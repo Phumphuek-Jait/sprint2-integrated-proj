@@ -7,7 +7,8 @@ showSchedule()
 
 async function showSchedule() {
     try{
-        const scheduleDatas = await loadDatas()
+        const response = await loadDatas()
+        const scheduleDatas = response.data
         
         if (!scheduleDatas || scheduleDatas.length === 0) {
             emptySchedule()
