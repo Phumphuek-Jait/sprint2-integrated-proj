@@ -48,6 +48,7 @@ function emptySchedule(){
     const emptyCell = document.createElement("td")
     emptyCell.colSpan = 9
     emptyCell.textContent = "There is currently no class schedule. Please check back later."
+    emptyCell.dataset.testid = "empty-message"
     emptyRow.append(emptyCell)
     scheduleBody.append(emptyRow)
 }
