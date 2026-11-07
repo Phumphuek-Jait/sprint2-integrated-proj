@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
     const schedules = await service.getAllObjects()
-    return apiResponse(res, schedules)
+    return res.json(schedules)
 })
 router.get("/:id", async (req, res) => {
     const id = req.params.id
