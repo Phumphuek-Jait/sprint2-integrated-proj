@@ -32,7 +32,7 @@ function newRow(data){
     const scheduleRow = document.createElement("tr")
     scheduleRow.dataset.testid = "schedule-row"
 
-    scheduleRow.append(createCell("code", data?.code), createCell("title", data?.title), createCell("type", data?.type), createCell("section", data?.section), createCell("group", data?.group), createCell("day", toCapitalize(data?.day)), createCell("time", data?.time), createCell("weeks", data?.weeks), createCell("remarks", data?.remarks))
+    scheduleRow.append(createCell("code", data?.course.code), createCell("title", data?.course.title), createCell("type", data?.course.type), createCell("section", data?.section), createCell("group", data?.studentGroup), createCell("day", toCapitalize(data?.dayOfWeek)), createCell("time", `${data?.startTime}-${data?.endTime}`), createCell("weeks", `${data?.startWeek}-${data?.endWeek}`), createCell("remarks", data?.remarks))
     return scheduleRow
 }
 

@@ -1,41 +1,23 @@
 {
   "schedules": [
     {
-      "id": "1",
-      "code": "INT100",
-      "title": "Design Thinking",
-      "type": "CORE",
-      "section": 1,
-      "group": "A",
-      "day": "TUESDAY",
-      "time": "09:30-12:30",
-      "weeks": "1-5",
-      "remarks": ""
-    },
-    {
-      "id": "2",
-      "code": "INT101",
-      "title": "Discrete Mathematics",
-      "type": "CORE",
-      "section": 1,
-      "group": "A",
-      "day": "THURSDAY",
-      "time": "13:30-17:00",
-      "weeks": "1-15",
-      "remarks": ""
-    },
-    {
-      "id": "3",
-      "code": "GEN121",
-      "title": "Learning and Problem Solving Skills",
-      "type": "GENED",
-      "section": 1,
-      "group": "",
-      "day": "MONDAY",
-      "time": "09:30-12:30",
-      "weeks": "1-15",
-      "remarks": "ONLINE"
-    }
+  "id": 1,
+  "course": {
+    "id": 1,
+    "code": "INT100",
+    "title": "Design Thinking",
+    "type": "CORE",
+    "yearLevel": 1
+  },
+  "section": 1,
+  "studentGroup": "A",
+  "dayOfWeek": "TUESDAY",
+  "startTime": "09:30",
+  "endTime": "12:30",
+  "startWeek": 1,
+  "endWeek": 5,
+  "remarks": null
+}
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }
