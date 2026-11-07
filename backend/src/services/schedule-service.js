@@ -18,21 +18,21 @@ export async function getAllObjects() {
 }
 
 export async function getObject(id) {
-    return await prisma.brands.findUnique(
+    return await prisma.courseSchedule.findUnique(
         {where: {id: id}}
     )
 }
 
 export async function updateObject(id, brand) {
-    return await prisma.brands.update({
+    return await prisma.courseSchedule.update({
         where: {id: id},data: brand
     })
 }
 
 export async function removeObject(id) {
-    return await prisma.brands.delete({where: {id: id}})
+    return await prisma.courseSchedule.delete({where: {id: id}})
 }
 
 export async function createObject(data) {
-    return await prisma.brands.create({data: data})
+    return await prisma.courseSchedule.create({data: data})
 }

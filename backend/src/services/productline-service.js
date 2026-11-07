@@ -10,7 +10,6 @@ export async function getAllObjects(pagination, viewType) {
     const objects =  await repo.findAll(pagination);
     return mapper.maps(objects , viewType)
 }
-
 export async function updateObject(id, data) {
     return await repo.update(id, data)
 }
