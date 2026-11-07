@@ -9,6 +9,7 @@ export default class ScheduleMapper {
             day: schedule.dayOfWeek,
             time: `${formatTime(schedule.startTime)}-${formatTime(schedule.endTime)}`,
             weeks: `${schedule.startWeek}-${schedule.endWeek}`,
+            remarks: schedule.remarks,
         }
     }
 
