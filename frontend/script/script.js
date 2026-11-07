@@ -56,3 +56,34 @@ function toCapitalize(str) {
   if (!str) return '';
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
+
+
+async function fetchSchedules(){
+    try{
+        const response = await fetch('/api/v1/health');
+        if (response.status !== 200){
+            showErrorModal();
+            return;
+        }
+        const data = await response.json();
+
+    }catch (error){
+        showErrorModal();
+    }
+}
+
+function showErrorModal(){
+    const modal = document.getElementById('error-modal');
+
+    if(modal && !modal.open){
+        modal.showModal();
+    }
+}
+
+const modal = document.getElementById('error-modal');
+
+modal.addEventListener('cancel', (event) => {
+    event.preventDefault();
+});
+
+fetchSchedules();
