@@ -12,6 +12,11 @@ fetchSchedules()
 
 async function fetchSchedules(){
     try{
+        const healthResponse = await fetch('/api/v1/health')
+
+        if(!healthResponse.ok){
+            throw new Error(`Health check failed: ${healthResponse.status}`)
+        }
         const scheduleDatas = await loadDatas()
         showSchedule(scheduleDatas)
     }catch (error){
