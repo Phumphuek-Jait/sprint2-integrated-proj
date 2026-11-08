@@ -2,6 +2,7 @@ import { loadDatas, deleteData, addData, editData } from './service.js'
 
 const scheduleTable = document.querySelector("#schedule")
 const scheduleBody = scheduleTable.querySelector("#schedule-body")
+const modal = document.getElementById('error-modal')
 
 showSchedule()
 
@@ -23,6 +24,7 @@ async function showSchedule() {
     }
     catch (error){
         console.error(error)
+        showErrorModal()
     }
 }
 
@@ -57,7 +59,6 @@ function toCapitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
-
 async function fetchSchedules(){
     try{
         const response = await fetch('/api/v1/health');
@@ -72,18 +73,18 @@ async function fetchSchedules(){
     }
 }
 
-function showErrorModal(){
-    const modal = document.getElementById('error-modal');
+function showErrorModal() {
+  const modal = document.getElementById('error-modal')
 
-    if(modal && !modal.open){
-        modal.showModal();
+  if (modal) {
+    modal.oncancel = (event) => {
+      event.preventDefault()
     }
+
+    if (!modal.open) {
+      modal.showModal()
+    }
+  }
 }
 
-const modal = document.getElementById('error-modal');
-
-modal.addEventListener('cancel', (event) => {
-    event.preventDefault();
-});
-
-fetchSchedules();
+fetchSchedules()

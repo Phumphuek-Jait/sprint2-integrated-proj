@@ -44,4 +44,4 @@ async function editItem(url, item) {
   return await res.json()
 }
 
-export { getItems, deleteItem, addItem, editItem }
+export { getItems, deleteItem, addItem, editItem}
