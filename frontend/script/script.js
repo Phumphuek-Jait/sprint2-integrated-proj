@@ -14,7 +14,7 @@ async function fetchSchedules(){
     try{
         const healthResponse = await fetchhealth()
 
-        if(!healthResponse.ok){
+        if(!healthResponse){
             throw new Error(`Health check failed: ${healthResponse.status}`)
         }
         const scheduleDatas = await loadDatas()
