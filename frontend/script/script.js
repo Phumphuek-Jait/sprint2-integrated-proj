@@ -4,28 +4,40 @@ const scheduleTable = document.querySelector("#schedule")
 const scheduleBody = scheduleTable.querySelector("#schedule-body")
 const modal = document.getElementById('error-modal')
 
-showSchedule()
+modal.addEventListener('cancel', (event) => {
+    event.preventDefault()
+})
 
-async function showSchedule() {
+fetchSchedules()
+
+async function fetchSchedules(){
     try{
-        const scheduleDatas = await loadDatas()
-        
-        if (!scheduleDatas || scheduleDatas.length === 0) {
-            emptySchedule()
-            return
+        const response = await fetch('/api/v1/health');
+        if (!response.ok){
+            throw new Error(`Health check failed: ${response.status}`)
         }
-        
-        const scheduleFragment = document.createDocumentFragment()
-        scheduleDatas.forEach(data => {
-            const row = newRow(data)
-            scheduleFragment.append(row)
-        });
-        scheduleBody.append(scheduleFragment)
-    }
-    catch (error){
+        const scheduleDatas = await loadDatas()
+        showSchedule(scheduleDatas)
+
+    }catch (error){
         console.error(error)
         showErrorModal()
     }
+}
+
+
+function showSchedule(scheduleDatas) {
+    if (!scheduleDatas || scheduleDatas.length === 0) {
+        emptySchedule()
+        return
+    }
+        
+    const scheduleFragment = document.createDocumentFragment()
+    scheduleDatas.forEach(data => {
+        const row = newRow(data)
+        scheduleFragment.append(row)
+    });
+    scheduleBody.append(scheduleFragment)
 }
 
 function newRow(data){
@@ -59,32 +71,9 @@ function toCapitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
-async function fetchSchedules(){
-    try{
-        const response = await fetch('/api/v1/health');
-        if (response.status !== 200){
-            showErrorModal();
-            return;
-        }
-        const data = await response.json();
-
-    }catch (error){
-        showErrorModal();
-    }
-}
 
 function showErrorModal() {
-  const modal = document.getElementById('error-modal')
-
-  if (modal) {
-    modal.oncancel = (event) => {
-      event.preventDefault()
+    if(modal && !modal.open){
+        modal.showModal()
     }
-
-    if (!modal.open) {
-      modal.showModal()
-    }
-  }
 }
-
-fetchSchedules()
