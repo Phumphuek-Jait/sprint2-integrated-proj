@@ -1,4 +1,4 @@
-import { loadDatas, deleteData, addData, editData } from './service.js'
+import { loadDatas, deleteData, addData, editData, fetchhealth} from './service.js'
 
 const scheduleTable = document.querySelector("#schedule")
 const scheduleBody = scheduleTable.querySelector("#schedule-body")
@@ -12,7 +12,7 @@ fetchSchedules()
 
 async function fetchSchedules(){
     try{
-        const healthResponse = await fetch('/api/v1/health')
+        const healthResponse = await fetchhealth()
 
         if(!healthResponse.ok){
             throw new Error(`Health check failed: ${healthResponse.status}`)
