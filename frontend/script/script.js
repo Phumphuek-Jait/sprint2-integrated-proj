@@ -12,13 +12,8 @@ fetchSchedules()
 
 async function fetchSchedules(){
     try{
-        const response = await fetch('/api/v1/health');
-        if (!response.ok){
-            throw new Error(`Health check failed: ${response.status}`)
-        }
         const scheduleDatas = await loadDatas()
         showSchedule(scheduleDatas)
-
     }catch (error){
         console.error(error)
         showErrorModal()
@@ -44,7 +39,7 @@ function newRow(data){
     const scheduleRow = document.createElement("tr")
     scheduleRow.dataset.testid = "schedule-row"
 
-    scheduleRow.append(createCell("code", data?.code), createCell("title", data?.title), createCell("type", data?.type), createCell("section", data?.section), createCell("group", data?.group), createCell("day", toCapitalize(data?.day)), createCell("time", data?.time), createCell("weeks", data?.weeks), createCell("remarks", data?.remarks))
+    scheduleRow.append(createCell("code", data?.course.code), createCell("title", data?.course.title), createCell("type", data?.course.type), createCell("section", data?.section), createCell("group", data?.studentGroup), createCell("day", toCapitalize(data?.dayOfWeek)), createCell("time", `${data?.startTime}-${data?.endTime}`), createCell("weeks", `${data?.startWeek}-${data?.endWeek}`), createCell("remarks", data?.remarks))
     return scheduleRow
 }
 
@@ -60,6 +55,7 @@ function emptySchedule(){
     const emptyCell = document.createElement("td")
     emptyCell.colSpan = 9
     emptyCell.textContent = "There is currently no class schedule. Please check back later."
+    emptyCell.dataset.testid = "empty-message"
     emptyRow.append(emptyCell)
     scheduleBody.append(emptyRow)
 }

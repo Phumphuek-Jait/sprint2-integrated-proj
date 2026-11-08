@@ -1,14 +1,22 @@
 export default class ScheduleMapper {
     static toSummaryDTO(schedule) {
         return {
-            code: schedule.course.code,
-            title: schedule.course.title,
-            type: schedule.course.type,
+            id: schedule.id,
+            course: {
+                id: schedule.course.id,
+                code: schedule.course.code,
+                title: schedule.course.title,
+                type: schedule.course.type,
+                yearLevel: schedule.course.yearLevel,
+            },
             section: schedule.section,
-            group: schedule.studentGroup,
-            day: schedule.dayOfWeek,
-            time: `${formatTime(schedule.startTime)}-${formatTime(schedule.endTime)}`,
-            weeks: `${schedule.startWeek}-${schedule.endWeek}`,
+            studentGroup: schedule.studentGroup,
+            dayOfWeek: schedule.dayOfWeek,
+            startTime: formatTime(schedule.startTime),
+            endTime: formatTime(schedule.endTime),
+            startWeek: schedule.startWeek,
+            endWeek: schedule.endWeek,
+            remarks: schedule.remarks,
         }
     }
 
