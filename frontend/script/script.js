@@ -1,4 +1,10 @@
-import { loadDatas, deleteData, addData, editData } from './service.js'
+import {
+  loadDatas,
+  deleteData,
+  addData,
+  editData,
+  fetchhealth
+} from './service.js'
 
 const scheduleTable = document.querySelector('#schedule')
 const scheduleBody = scheduleTable.querySelector('#schedule-body')
