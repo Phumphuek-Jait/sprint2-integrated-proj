@@ -1,34 +1,48 @@
 import express from 'express'
 import { apiResponse } from '../mappers/api-response.js'
 import * as service from '../services/schedule-service.js'
-import httpStatus from "http-status";
-
+import httpStatus from 'http-status'
 
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-    const schedules = await service.getAllObjects()
-    return res.json(schedules)
-})
-router.get("/:id", async (req, res) => {
-    const id = req.params.id
-    const object = await service.getObject(id)
-    res.json(object)
+  const schedules = await service.getAllObjects()
+  return res.json(schedules)
 })
 
-router.post("/", async (req, res) => {
-    const object = req.body
-    const result = await service.createObject(object)
-    apiRespone(res, result, httpStatus.CREATED)
+router.get('/year-level/:yearLevel', async (req, res) => {
+  const yearLevel = Number(req.params.yearLevel)
+
+  if (!Number.isInteger(yearLevel) || yearLevel < 1 || yearLevel > 4) {
+    return res.status(400).json({
+      message: 'Invalid yearLevel. Please provide a value between 1 and 4.'
+    })
+  }
+
+  const schedules = await service.getSchedulesByYearLevel(yearLevel)
+
+  return res.json(schedules)
 })
-router.put("/:id", async (req, res) => {
-    const id = req.params.id
-    const object = await service.updateObject(id, req.body)
-    res.json(object)
+
+router.get('/:id', async (req, res) => {
+  const id = req.params.id
+  const object = await service.getObject(id)
+  res.json(object)
 })
-router.delete("/:id", async (req, res) => {
-    const id = req.params.id
-    await service.removeObject(id)
-    res.status(204).end()
+
+router.post('/', async (req, res) => {
+  const object = req.body
+  const result = await service.createObject(object)
+  apiRespone(res, result, httpStatus.CREATED)
+})
+router.put('/:id', async (req, res) => {
+  const id = req.params.id
+  const object = await service.updateObject(id, req.body)
+  res.json(object)
+})
+router.delete('/:id', async (req, res) => {
+  const id = req.params.id
+  await service.removeObject(id)
+  res.status(204).end()
 })
 export default router
