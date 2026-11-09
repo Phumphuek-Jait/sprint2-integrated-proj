@@ -43,3 +43,29 @@
   color: #0f2942;
   font-weight: 600;
 }
+
+.error-modal-overlay {
+    border: none;
+    padding: 0;
+    margin: auto;
+    background: transparent;
+    max-width: 90%;
+}
+
+.error-modal-overlay::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.error-modal-content {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.error-modal-content p {
+    margin: 0;
+    font-size: 18px;
+    color: red;
+}

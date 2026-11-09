@@ -1,31 +1,43 @@
-import { loadDatas, deleteData, addData, editData } from './service.js'
+import { loadDatas, deleteData, addData, editData, fetchhealth} from './service.js'
 
 const scheduleTable = document.querySelector("#schedule")
 const scheduleBody = scheduleTable.querySelector("#schedule-body")
+const modal = document.getElementById('error-modal')
 
-showSchedule()
+modal.addEventListener('cancel', (event) => {
+    event.preventDefault()
+})
 
-async function showSchedule() {
+fetchSchedules()
+
+async function fetchSchedules(){
     try{
-        const scheduleDatas = await loadDatas()
-        // const response = await loadDatas()
-        // const scheduleDatas = response.data
-        
-        if (!scheduleDatas || scheduleDatas.length === 0) {
-            emptySchedule()
-            return
+        const healthResponse = await fetchhealth()
+
+        if(!healthResponse){
+            throw new Error(`Health check failed: ${healthResponse.status}`)
         }
-        
-        const scheduleFragment = document.createDocumentFragment()
-        scheduleDatas.forEach(data => {
-            const row = newRow(data)
-            scheduleFragment.append(row)
-        });
-        scheduleBody.append(scheduleFragment)
-    }
-    catch (error){
+        const scheduleDatas = await loadDatas()
+        showSchedule(scheduleDatas)
+    }catch (error){
         console.error(error)
+        showErrorModal()
     }
+}
+
+
+function showSchedule(scheduleDatas) {
+    if (!scheduleDatas || scheduleDatas.length === 0) {
+        emptySchedule()
+        return
+    }
+        
+    const scheduleFragment = document.createDocumentFragment()
+    scheduleDatas.forEach(data => {
+        const row = newRow(data)
+        scheduleFragment.append(row)
+    });
+    scheduleBody.append(scheduleFragment)
 }
 
 function newRow(data){
@@ -58,4 +70,11 @@ function emptySchedule(){
 function toCapitalize(str) {
   if (!str) return '';
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+
+function showErrorModal() {
+    if(modal && !modal.open){
+        modal.showModal()
+    }
 }

@@ -1,6 +1,7 @@
-import { getItems, deleteItem, addItem, editItem } from './utils/fetchUtils.js'
+import { getItems, deleteItem, addItem, editItem} from './utils/fetchUtils.js'
 //Nodejs+Express+SQLite backend
 const apiURL = '/intproj26/ip26-line/api/v1/schedules'
+const apiURLH = '/intproj26/ip26-line/api/v1/health'
 //JSON Server
 // const apiURL = 'http://localhost:3000/schedules'
 
@@ -20,4 +21,8 @@ function editData(data) {
   return editItem(apiURL, data)
 }
 
-export { loadDatas, deleteData, addData, editData }
+function fetchhealth() {
+  return getItems(apiURLH)
+}
+
+export { loadDatas, deleteData, addData, editData, fetchhealth}
