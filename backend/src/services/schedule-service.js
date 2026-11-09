@@ -9,7 +9,8 @@ export async function getAllObjects() {
       { courseId: 'asc' },
       { section: 'asc' },
       { dayOfWeek: 'asc' },
-      { startTime: 'asc' }
+      { startTime: 'asc' },
+      { id: 'asc' }
     ]
   })
 
@@ -31,7 +32,8 @@ export async function getSchedulesByYearLevel(yearLevel) {
       { courseId: 'asc' },
       { section: 'asc' },
       { dayOfWeek: 'asc' },
-      { startTime: 'asc' }
+      { startTime: 'asc' },
+      { id: 'asc' }
     ]
   })
 
