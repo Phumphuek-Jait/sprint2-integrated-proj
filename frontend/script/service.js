@@ -1,12 +1,17 @@
-import { getItems, deleteItem, addItem, editItem} from './utils/fetchUtils.js'
+import { getItems, deleteItem, addItem, editItem } from './utils/fetchUtils.js'
 //Nodejs+Express+SQLite backend
-const apiURL = '/intproj26/ip26-line/api/v1/schedules'
-const apiURLH = '/intproj26/ip26-line/api/v1/health'
+const apiURL = 'http://localhost:3000/api/v1/schedules'
+const apiURLH = 'http://localhost:3000/api/v1/health'
 //JSON Server
 // const apiURL = 'http://localhost:3000/schedules'
 
-function loadDatas() {
-  return getItems(apiURL)
+function loadDatas(yearLevel) {
+  const url =
+    yearLevel === undefined
+      ? apiURL
+      : `${apiURL}?yearLevel=${encodeURIComponent(yearLevel)}`
+
+  return getItems(url)
 }
 
 function deleteData(id) {
@@ -25,4 +30,4 @@ function fetchhealth() {
   return getItems(apiURLH)
 }
 
-export { loadDatas, deleteData, addData, editData, fetchhealth}
+export { loadDatas, deleteData, addData, editData, fetchhealth }
