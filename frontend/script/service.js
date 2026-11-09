@@ -1,7 +1,7 @@
 import { getItems, deleteItem, addItem, editItem } from './utils/fetchUtils.js'
 //Nodejs+Express+SQLite backend
-const apiURL = 'http://localhost:3000/api/v1/schedules'
-const apiURLH = 'http://localhost:3000/api/v1/health'
+const apiURL = '/intproj26/ip26-line/api/v1/schedules'
+const apiURLH = '/intproj26/ip26-line/api/v1/health'
 //JSON Server
 // const apiURL = 'http://localhost:3000/schedules'
 

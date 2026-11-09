@@ -1,10 +1,4 @@
-import {
-  loadDatas,
-  deleteData,
-  addData,
-  editData,
-  fetchhealth
-} from './service.js'
+import { loadDatas, deleteData, addData, editData } from './service.js'
 
 const scheduleTable = document.querySelector('#schedule')
 const scheduleBody = scheduleTable.querySelector('#schedule-body')
@@ -74,48 +68,34 @@ function updateSelectedButton(yearLevel) {
   })
 }
 
-// fetchSchedules(getYearLevelFromURL())
-
 const initialYearLevel = getYearLevelFromURL()
 
 updateSelectedButton(initialYearLevel)
 fetchSchedules(initialYearLevel)
 
-// async function fetchSchedules(yearLevel) {
-//   try {
-//     const healthResponse = await fetchhealth()
-
-//     if (!healthResponse) {
-//       throw new Error(`Health check failed: ${healthResponse.status}`)
-//     }
-//     const scheduleDatas = await loadDatas(yearLevel)
-//     showSchedule(scheduleDatas)
-//   } catch (error) {
-//     console.error(error)
-//     showErrorModal()
-//   }
-// }
-
 async function fetchSchedules(yearLevel) {
   const cacheKey = yearLevel ?? 'all'
 
-  // ตรวจสอบว่ามีข้อมูลใน Cache หรือยัง
+  if (scheduleCache.has('all')) {
+    const all = scheduleCache.get('all')
+
+    const filtered =
+      yearLevel !== undefined
+        ? all.filter((s) => s.course.yearLevel === yearLevel)
+        : all
+
+    showSchedule(filtered)
+    return
+  }
+
   if (scheduleCache.has(cacheKey)) {
     showSchedule(scheduleCache.get(cacheKey))
     return
   }
 
   try {
-    const healthResponse = await fetchhealth()
-
-    if (!healthResponse) {
-      throw new Error(`Health check failed: ${healthResponse.status}`)
-    }
-
-    // เรียก API เมื่อยังไม่มีข้อมูลใน Cache
     const scheduleDatas = await loadDatas(yearLevel)
 
-    // บันทึกข้อมูลลง Cache
     scheduleCache.set(cacheKey, scheduleDatas)
 
     showSchedule(scheduleDatas)
