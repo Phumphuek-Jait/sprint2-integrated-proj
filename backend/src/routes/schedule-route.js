@@ -5,22 +5,30 @@ import httpStatus from 'http-status'
 
 const router = express.Router()
 
+// router.get('/', async (req, res) => {
+//   const schedules = await service.getAllObjects()
+//   return res.json(schedules)
+// })
+
 router.get('/', async (req, res) => {
-  const schedules = await service.getAllObjects()
-  return res.json(schedules)
-})
+  const { yearLevel } = req.query
 
-router.get('/year-level/:yearLevel', async (req, res) => {
-  const yearLevel = Number(req.params.yearLevel)
+  // ถ้าไม่ได้เลือกชั้นปี ให้แสดงทุกตาราง
+  if (yearLevel === undefined) {
+    const schedules = await service.getAllObjects()
+    return res.json(schedules)
+  }
 
-  if (!Number.isInteger(yearLevel) || yearLevel < 1 || yearLevel > 4) {
+  const level = Number(yearLevel)
+
+  // ตรวจสอบค่าชั้นปี
+  if (!Number.isInteger(level) || level < 1 || level > 4) {
     return res.status(400).json({
       message: 'Invalid yearLevel. Please provide a value between 1 and 4.'
     })
   }
 
-  const schedules = await service.getSchedulesByYearLevel(yearLevel)
-
+  const schedules = await service.getSchedulesByYearLevel(level)
   return res.json(schedules)
 })
 

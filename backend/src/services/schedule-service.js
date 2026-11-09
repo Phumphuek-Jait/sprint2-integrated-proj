@@ -9,8 +9,7 @@ export async function getAllObjects() {
       { courseId: 'asc' },
       { section: 'asc' },
       { dayOfWeek: 'asc' },
-      { startTime: 'asc' },
-      { id: 'asc' }
+      { startTime: 'asc' }
     ]
   })
 
@@ -21,9 +20,7 @@ export async function getSchedulesByYearLevel(yearLevel) {
   const schedules = await prisma.courseSchedule.findMany({
     where: {
       course: {
-        is: {
-          yearLevel: yearLevel
-        }
+        yearLevel: yearLevel
       }
     },
     include: {
