@@ -35,7 +35,7 @@ router.get('/', async (req, res) => {
 router.get('/:yearLevel/schedules', async (req, res) => {
   const yearLevel = Number(req.params.yearLevel)
   const {studentGroup} = req.query
-  const object = await service.getSchedulesByYearLevel(yearLevel, studentGroup)
+  const object = await service.getSchedulesByYearLevelAndGroup(yearLevel, studentGroup)
   return res.json(object)
 })
 
