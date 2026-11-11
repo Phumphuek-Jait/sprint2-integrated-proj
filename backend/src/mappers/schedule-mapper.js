@@ -20,11 +20,9 @@ export default class ScheduleMapper {
         }
     }
 
-    static toYearWithGDTO(schedule, counts) {
-        let fix = true
-        const key = `${schedule.section}:${schedule.studentGroup}`
-        const countedSection = counts[key] ?? 0
-        if (schedule.course.type === "ELECTIVE" || countedSection > 2) fix = false
+    static toYearWithGDTO(schedule, sections) {
+        const fix = schedule.course.type === 'CORE' &&
+            (schedule.studentGroup !== null || Object.keys(sections[schedule.courseId]).length === 1)
         return {
             id: schedule.id,
             course: {

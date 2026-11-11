@@ -22,8 +22,7 @@ export async function getSchedulesByYearLevel(yearLevel, studentGroup) {
     where: {
       course: {
         yearLevel: yearLevel
-      },
-      ...(studentGroup && { studentGroup: studentGroup })
+      }
     },
     include: {
       course: true
@@ -37,17 +36,24 @@ export async function getSchedulesByYearLevel(yearLevel, studentGroup) {
       { id: 'asc' }
     ]
   })
-  const counts = {}
+  const sections = {}
 
   schedules.forEach((schedule) => {
-    const key = `${schedule.section}:${schedule.studentGroup}`
-    if (counts[key] === undefined) {
-      counts[key] = 0
+    if (sections[schedule.courseId] === undefined) {
+      sections[schedule.courseId] = {}
     }
-    counts[key]++
+    sections[schedule.courseId][schedule.section] = true
   })
 
-  return ScheduleMapper.maps(schedules, 'yearlevelWithg', counts)
+  const mappedSchedules = ScheduleMapper.maps(schedules, 'yearlevelWithg', sections)
+
+  if (!studentGroup) {
+    return mappedSchedules
+  }
+
+  return mappedSchedules.filter((schedule) =>
+    !schedule.fixed || schedule.studentGroup === studentGroup || schedule.studentGroup === null
+  )
 }
 
 export async function getObject(id) {
