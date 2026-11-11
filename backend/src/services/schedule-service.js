@@ -17,7 +17,7 @@ export async function getAllObjects() {
   return ScheduleMapper.maps(schedules)
 }
 
-export async function getSchedulesByYearLevel(yearLevel) {
+export async function getSchedulesByYearLevel(yearLevel, studentGroup) {
   const schedules = await prisma.courseSchedule.findMany({
     where: {
       course: {
@@ -36,8 +36,24 @@ export async function getSchedulesByYearLevel(yearLevel) {
       { id: 'asc' }
     ]
   })
+  const sections = {}
 
-  return ScheduleMapper.maps(schedules)
+  schedules.forEach((schedule) => {
+    if (sections[schedule.courseId] === undefined) {
+      sections[schedule.courseId] = {}
+    }
+    sections[schedule.courseId][schedule.section] = true
+  })
+
+  const mappedSchedules = ScheduleMapper.maps(schedules, 'yearlevelWithg', sections)
+
+  if (!studentGroup) {
+    return mappedSchedules
+  }
+
+  return mappedSchedules.filter((schedule) =>
+    !schedule.fixed || schedule.studentGroup === studentGroup || schedule.studentGroup === null
+  )
 }
 
 export async function getObject(id) {
