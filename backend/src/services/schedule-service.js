@@ -17,12 +17,13 @@ export async function getAllObjects() {
   return ScheduleMapper.maps(schedules)
 }
 
-export async function getSchedulesByYearLevel(yearLevel) {
+export async function getSchedulesByYearLevel(yearLevel, studentGroup) {
   const schedules = await prisma.courseSchedule.findMany({
     where: {
       course: {
         yearLevel: yearLevel
-      }
+      },
+      ...(studentGroup && { studentGroup: studentGroup })
     },
     include: {
       course: true
@@ -36,8 +37,17 @@ export async function getSchedulesByYearLevel(yearLevel) {
       { id: 'asc' }
     ]
   })
+  const counts = {}
 
-  return ScheduleMapper.maps(schedules)
+  schedules.forEach((schedule) => {
+    const key = `${schedule.section}:${schedule.studentGroup}`
+    if (counts[key] === undefined) {
+      counts[key] = 0
+    }
+    counts[key]++
+  })
+
+  return ScheduleMapper.maps(schedules, 'yearlevelWithg', counts)
 }
 
 export async function getObject(id) {
