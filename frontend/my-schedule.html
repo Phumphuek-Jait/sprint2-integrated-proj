@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="Create.css">
 </head>
 <body>
+    <div data-testid="user-name">
+        <span id="user-display-name"></span>
+        <button id="sign-out-button">Sign Out</button>
+    </div>
     <section id="course-options-section" hidden>
         <h2>Courses to Choose</h2>
         <table data-testid="course-options">
@@ -27,5 +31,6 @@
             <tbody id="course-options-body"></tbody>
         </table>
     </section>
+    <script type="module" src="./script/my-schedule.js"></script>
 </body>
 </html>
