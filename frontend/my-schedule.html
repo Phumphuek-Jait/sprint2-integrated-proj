@@ -4,12 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Schedule</title>
+    <link rel="stylesheet" href="Create.css">
 </head>
 <body>
     <div data-testid="user-name">
         <span id="user-display-name"></span>
         <button id="sign-out-button">Sign Out</button>
     </div>
+    <section id="course-options-section" hidden>
+        <h2>Courses to Choose</h2>
+        <table data-testid="course-options">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Section</th>
+                    <th>Group</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Weeks</th>
+                    <th>Room</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody id="course-options-body"></tbody>
+        </table>
+    </section>
     <script type="module" src="./script/my-schedule.js"></script>
 </body>
 </html>
