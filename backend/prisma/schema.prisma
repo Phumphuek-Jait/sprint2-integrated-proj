@@ -56,3 +56,34 @@ enum ScheduleStudentGroup {
   A
   B
 }
+
+model AcademicSetting {
+  id                  Int    @id
+  currentAcademicYear Int    @map("current_academic_year")
+  currentSemester     Int    @map("current_semester")
+  programCode         String @map("program_code") @db.Text
+  programName         String @map("program_name") @db.Text
+
+  @@map("academic_settings")
+}
+
+model StudentGroupRange {
+  id           Int    @id @default(autoincrement())
+  entryYear    Int    @map("entry_year")
+  studentGroup String @map("student_group") @db.VarChar(1)
+  fromNo       Int    @map("from_no")
+  toNo         Int    @map("to_no")
+
+  @@map("student_group_ranges")
+}
+
+model Selection {
+  studentId String   @map("student_id")
+  courseId  Int      @map("course_id")
+  section   Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@id([studentId, courseId])
+  @@map("selections")
+}
