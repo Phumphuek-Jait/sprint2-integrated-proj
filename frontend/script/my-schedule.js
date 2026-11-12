@@ -1,5 +1,5 @@
 //จักหน้า my-schedule
-import { requireSignIn, signOut } from "./auth";
+import { requireSignIn, signOut } from "./auth.js";
 
 async function initpage(){
    const user = await requireSignIn()
