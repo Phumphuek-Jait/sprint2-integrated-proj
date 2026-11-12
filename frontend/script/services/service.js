@@ -1,4 +1,4 @@
-import { getItems, deleteItem, addItem, editItem } from './utils/fetchUtils.js'
+import { getItems, deleteItem, addItem, editItem } from '../utils/fetchUtils.js'
 //Nodejs+Express+SQLite backend
 const apiURL = '/intproj26/line-yikrom3lkhmf3mmrxc2flibk/api/v1/schedules'
 const apiURLH = '/intproj26/line-yikrom3lkhmf3mmrxc2flibk/api/v1/health'

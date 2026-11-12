@@ -1,10 +1,11 @@
+import { createCell, toCapitalize } from './utils/tableUtils.js'
 import {
   loadDatas,
   deleteData,
   addData,
   editData,
   fetchhealth
-} from './service.js'
+} from './services/service.js'
 
 const scheduleTable = document.querySelector('#schedule')
 const scheduleBody = scheduleTable.querySelector('#schedule-body')
@@ -145,13 +146,6 @@ function newRow(data) {
   return scheduleRow
 }
 
-function createCell(testId, value) {
-  const cell = document.createElement('td')
-  cell.dataset.testid = testId
-  cell.textContent = value ?? ''
-  return cell
-}
-
 function emptySchedule() {
   const emptyRow = document.createElement('tr')
   const emptyCell = document.createElement('td')
@@ -161,11 +155,6 @@ function emptySchedule() {
   emptyCell.dataset.testid = 'empty-message'
   emptyRow.append(emptyCell)
   scheduleBody.append(emptyRow)
-}
-
-function toCapitalize(str) {
-  if (!str) return ''
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
 
 function showErrorModal() {
