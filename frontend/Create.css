@@ -1,25 +1,25 @@
-#buttons{
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+#buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-#buttons button{
-    background-color: white;
-    color: #234e70;
-    border: 2px solid #234e70;
-    border-radius: 8px;
-    padding: 8px 18px;
-    border-color: #234e70;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    /* transition: all 0.2s; */
+#buttons button {
+  background-color: white;
+  color: #234e70;
+  border: 2px solid #234e70;
+  border-radius: 8px;
+  padding: 8px 18px;
+  border-color: #234e70;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  /* transition: all 0.2s; */
 }
 
-#buttons button:hover{
-    background-color: #234e70;
-    color: white;
+#buttons button:hover {
+  background-color: #234e70;
+  color: white;
 }
 
 #schedule {
@@ -31,7 +31,8 @@
   /* overflow: hidden; */
 }
 
-#schedule th, #schedule td {
+#schedule th,
+#schedule td {
   padding: 12px 16px;
   border: 1px solid #e2e8f0;
   text-align: left;
@@ -45,27 +46,57 @@
 }
 
 .error-modal-overlay {
-    border: none;
-    padding: 0;
-    margin: auto;
-    background: transparent;
-    max-width: 90%;
+  border: none;
+  padding: 0;
+  margin: auto;
+  background: transparent;
+  max-width: 90%;
 }
 
 .error-modal-overlay::backdrop {
-    background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .error-modal-content {
-    background-color: white;
-    padding: 30px 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    text-align: center;
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
 }
 
 .error-modal-content p {
-    margin: 0;
-    font-size: 18px;
-    color: red;
+  margin: 0;
+  font-size: 18px;
+  color: red;
+}
+
+/* My Schedule button */
+
+#page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.my-schedule-button {
+  display: inline-block;
+  background-color: white;
+  color: #234e70;
+  border: 2px solid #234e70;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.my-schedule-button:hover,
+.my-schedule-button:focus-visible {
+  background-color: #234e70;
+  color: white;
 }
