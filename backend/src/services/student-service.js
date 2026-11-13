@@ -28,7 +28,7 @@ export const getStudentProfileById = async (id) => {
     const yearLevel = (setting.currentAcademicYear % 100) - EntryYear + 1;
 
     return {
-        studentID: id,
+        studentId: id,
         yearLevel: yearLevel,
         studentGroup: groupRange.studentGroup
     };
