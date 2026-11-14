@@ -34,3 +34,18 @@ export const getStudentProfileById = async (id) => {
     };
 }
 
+
+export const deleteStudentSelections = async (id) => {
+    const student = await getStudentProfileById(id)
+    
+    if(!student){
+        return null;
+    }
+
+    await prisma.selection.deleteMany({ //ลบข้อมูลหลายรายการ
+        where: {
+            studentId: id
+        }
+    });
+    return true;
+}
