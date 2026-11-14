@@ -1,102 +1,53 @@
-#buttons {
+/* Profile & Role Display */
+
+#account-section {
+  margin-bottom: 24px;
+}
+
+#user-account {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
-#buttons button {
-  background-color: white;
-  color: #234e70;
-  border: 2px solid #234e70;
-  border-radius: 8px;
-  padding: 8px 18px;
-  border-color: #234e70;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  /* transition: all 0.2s; */
-}
-
-#buttons button:hover {
-  background-color: #234e70;
-  color: white;
-}
-
-#schedule {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  /* overflow: hidden; */
-}
-
-#schedule th,
-#schedule td {
-  padding: 12px 16px;
-  border: 1px solid #e2e8f0;
-  text-align: left;
-  font-size: 14px;
-}
-
-#schedule th {
-  background-color: #f8fafc;
-  color: #0f2942;
+#user-display-name {
   font-weight: 600;
 }
 
-.error-modal-overlay {
-  border: none;
-  padding: 0;
-  margin: auto;
-  background: transparent;
-  max-width: 90%;
-}
-
-.error-modal-overlay::backdrop {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.error-modal-content {
-  background-color: white;
-  padding: 30px 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  text-align: center;
-}
-
-.error-modal-content p {
-  margin: 0;
-  font-size: 18px;
-  color: red;
-}
-
-/* My Schedule button */
-
-#page-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.my-schedule-button {
-  display: inline-block;
+#sign-out-button {
   background-color: white;
   color: #234e70;
   border: 2px solid #234e70;
   border-radius: 8px;
   padding: 8px 18px;
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
+  font-size: 14px;
   cursor: pointer;
 }
 
-.my-schedule-button:hover,
-.my-schedule-button:focus-visible {
+#sign-out-button:hover {
   background-color: #234e70;
   color: white;
+}
+
+#student-profile {
+  font-size: 18px;
+  font-weight: 600;
+  color: #234e70;
+  margin-top: 12px;
+}
+
+#not-student-message,
+#lecturer-message {
+  font-size: 16px;
+  margin-top: 12px;
+}
+
+/* Keep hidden elements hidden */
+#user-account[hidden],
+#student-profile[hidden],
+#not-student-message[hidden],
+#lecturer-message[hidden],
+#course-options-section[hidden] {
+  display: none !important;
 }
