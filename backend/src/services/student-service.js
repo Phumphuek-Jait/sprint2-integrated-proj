@@ -34,3 +34,15 @@ export const getStudentProfileById = async (id) => {
     };
 }
 
+export const getStudentSelections = async (id) => {
+    const student = await getStudentProfileById(id);
+    if (!student) {
+        return null;
+    }
+
+    return prisma.selection.findMany({
+        where: { studentId: id },
+        orderBy: { courseId: 'asc' },
+    });
+};
+
