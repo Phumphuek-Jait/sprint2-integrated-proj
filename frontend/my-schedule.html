@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="Create.css" />
   </head>
   <body>
-    <div data-testid="user-name" hidden aria-live="polite">
-      <span>Welcome, <strong id="user-display-name"></strong></span>
+    <div hidden aria-live="polite">
+      <span>
+        Welcome,
+        <strong id="user-display-name" data-testid="user-name"></strong>
+      </span>
+
       <button id="sign-out-button" type="button" disabled>Sign Out</button>
     </div>
     <p id="user-name-error" role="alert" hidden></p>
