@@ -1,6 +1,7 @@
 //จักหน้า my-schedule
 import { requireSignIn, signOut } from "./auth.js";
-import { getStudentProfile, loadSchedulebyYearAndGroup } from "./services/service.js";
+import { createCell, toCapitalize } from "./utils/tableUtils.js";
+import { getStudentProfile, loadSchedulebyYearAndGroup, getStudentSelection} from "./services/service.js";
 
 async function initpage(){
    const user = await requireSignIn()
@@ -8,76 +9,93 @@ async function initpage(){
    document.getElementById("sign-out-button").addEventListener('click', () => {
     signOut();
    });
-   const studentId = user.preferred_username || user.username || user.studentId;
+
+   if(user.roles && user.roles.includes("lecturer")){
+      document.getElementById("lecturer-message").hidden = false
+      return
+   }
+
+   const studentId = user.username;
    await loadMySchedule(studentId) 
 }
 
 async function loadMySchedule(studentId){
-   const statusEl = document.getElementById('status-message');
-   const courseSection = document.getElementById("course-options-section");
+   const notStudentEl = document.getElementById("not-student-message")
+   const myScheduleSection = document.getElementById('status-message');
+   const courseOptionSection = document.getElementById("course-options-section");
 
    try{
       const student = await getStudentProfile(studentId);
       if(student.notFound){
-         statusEl.textContent = student.message || "Your account is not a student of the BSc.IT program.";
-         statusEl.hidden = false;
-         courseSection.hidden = true;
+         notStudentEl.hidden = false
+         myScheduleSection.hidden = true
+         courseOptionSection.hidden = true
          return;
       }
 
-      const response = await loadSchedulebyYearAndGroup(student.yearLevel,student.studentGroup);
-      const schedules = Array.isArray(response) ? response : (response.data || []);
+      
 
-      statusEl.hidden = true;
-      courseSection.hidden = false;
-      renderCourseOptions(schedules);
+      const [schedules, selections] = await Promise.all([
+         loadSchedulebyYearAndGroup(student.yearLevel, student.studentGroup),
+         getStudentSelection(studentId)
+      ])
 
-   }catch(error){
-      console.error("Error loading schedule:", error);
-      statusEl.textContent = "Failed to load schedule data.";
-      statusEl.hidden = false;
-   }
+      const myScheduleItems = []
+      const courseOptionItems = []
+
+      schedules.forEach((schedule) => {
+         const courseId = schedule.course?.id ?? schedule.courseId
+         const matchedSelection = selections.find((sel) => {
+            const selCourseId = sel.courseId ?? sel.course?.id
+            return selCourseId === courseId
+         })
+
+      if (schedule.fixed) {
+        myScheduleItems.push(schedule)
+      } else if (matchedSelection) {
+        if (schedule.section === matchedSelection.section) {
+          myScheduleItems.push(schedule)
+        }
+      } else {
+        courseOptionItems.push(schedule)
+      }
+    })
+
+    myScheduleSection.hidden = false
+    renderTable('my-schedule-body', myScheduleItems)
+
+    courseOptionsSection.hidden = courseOptionItems.length === 0
+    renderTable('course-options-body', courseOptionItems)
+
+  } catch (error) {
+    console.error('Error loading schedule:', error)
+    if (!modal.open) {
+      modal.showModal()
+    }
+  }
 }
 
-function renderCourseOptions(schedules){
-   const tbody = document.getElementById("course-options-body")
-   tbody.innerHTML = "";
+function renderTable(tbodyId, items) {
+  const tbody = document.getElementById(tbodyId)
+  tbody.replaceChildren()
 
-   schedules.forEach((item) => {
-      const tr = document.createElement("tr");
-      const code = item.course?.code || item.code || "-";
-      const title = item.course?.title || item.title || "-";
-      const type = item.course?.type || item.type || "-";
-      const section = item.section ?? "-";
-      const group = item.studentGroup || "-";
-      const day = item.dayOfWeek || "-";
-      const time = `${formatTime(item.startTime)} - ${formatTime(item.endTime)}`;
-      const weeks = (item.startWeek && item.endWeek) ? `${item.startWeek}-${item.endWeek}` : "-";
-      const room = item.room || "-";
-      const remarks = item.remarks || "-";
+  items.forEach((data) => {
+    const row = document.createElement('tr')
+    row.dataset.testid = 'schedule-row'
 
-      tr.innerHTML = `
-         <td>${code}</td>
-         <td>${title}</td>
-         <td>${type}</td>
-         <td>${section}</td>
-         <td>${group}</td>
-         <td>${day}</td>
-         <td>${time}</td>
-         <td>${weeks}</td>
-         <td>${room}</td>
-         <td>${remarks}</td>
-      `;
-      tbody.appendChild(tr);
-   });
-}
-
-function formatTime(timeStr){
-   if(!timeStr) return "";
-   if(timeStr.includes("T")){
-      return timeStr.split("T")[1].slice(0,5);
-   }
-   return timeStr.slice(0,5);
+    row.append(
+      createCell('code', data?.course?.code),
+      createCell('title', data?.course?.title),
+      createCell('type', data?.course?.type),
+      createCell('section', data?.section),
+      createCell('group', data?.studentGroup),
+      createCell('day', toCapitalize(data?.dayOfWeek)),
+      createCell('time', `${data?.startTime}-${data?.endTime}`),
+      createCell('weeks', `${data?.startWeek}-${data?.endWeek}`),
+      createCell('remarks', data?.remarks)
+    )
+    tbody.append(row)
+  })
 }
 
 initpage();

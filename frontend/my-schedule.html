@@ -12,7 +12,28 @@
         <button id="sign-out-button">Sign Out</button>
     </div>
 
-    <p id="status-message" hidden></p>
+    <p id="not-student-message" data-testid="not-student" hidden>Your account is not a student of the BSc.IT program.</p>
+    <p id="lecturer-message" data-testid="lecturer-only" hidden>The lecturer view is comming soon</p>
+
+    <section id="my-schedule-section" hidden>
+        <h2>My Schedule</h2>
+        <table data-testid="my-schedule">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Section</th>
+                    <th>Group</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Weeks</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody id="my-schedule-body"></tbody>
+        </table>
+    </section>
 
     <section id="course-options-section" hidden>
         <h2>Courses to Choose</h2>
@@ -27,13 +48,19 @@
                     <th>Day</th>
                     <th>Time</th>
                     <th>Weeks</th>
-                    <th>Room</th>
                     <th>Remarks</th>
                 </tr>
             </thead>
             <tbody id="course-options-body"></tbody>
         </table>
     </section>
+
+    <dialog id="error-modal" class="error-modal-overlay" colsedby="none">
+        <div class="error-modal-content">
+            <p>There is a problem. Please try again later.</p>
+        </div>
+    </dialog>
+
     <script type="module" src="./script/my-schedule.js"></script>
 </body>
 </html>

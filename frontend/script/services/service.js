@@ -2,7 +2,7 @@ import { getItems, deleteItem, addItem, editItem } from '../utils/fetchUtils.js'
 //Nodejs+Express+SQLite backend
 const apiURL = '/intproj26/line-yikrom3lkhmf3mmrxc2flibk/api/v1/schedules'
 const apiURLH = '/intproj26/line-yikrom3lkhmf3mmrxc2flibk/api/v1/health'
-const apiStudentURL = '/intproj26/line-yikrom3lkhmf3mmrxc2flibk/api/v1/stydents'
+const apiStudentURL = '/intproj26/line-yikrom3lkhmf3mmrxc2flibk/api/v1/students'
 const apiYearLevelURL = '/intproj26/line-yikrom3lkhmf3mmrxc2flibk/api/v1/year-levels'
 //JSON Server
 // const apiURL = 'http://localhost:3000/schedules'
@@ -52,4 +52,9 @@ function loadSchedulebyYearAndGroup(yearLevel,studentGroup){
   return getItems(url)
 }
 
-export { loadDatas, deleteData, addData, editData, fetchhealth, getStudentProfile, loadSchedulebyYearAndGroup }
+function getStudentSelection(studentId){
+  const url = `${apiStudentURL}/${encodeURIComponent(studentId)}/selections`
+  return getItems(url)
+}
+
+export { loadDatas, deleteData, addData, editData, fetchhealth, getStudentProfile, loadSchedulebyYearAndGroup, getStudentSelection}
