@@ -2,6 +2,7 @@ import express from 'express'
 import schedulesRouter from './routes/schedule-route.js'
 import schedulesWithYlGRouter from "./routes/scheduleyeargroup-route.js"
 // import brandsRouter from "./routes/brand-route.js"
+import StudentRouter from "./routes/student-route.js"
 
 import {errorHandler} from "./middlewares/error-handler.js";
 import {queryParser} from "./middlewares/pagination-middleware.js";
@@ -20,9 +21,10 @@ app.get(`/api/v1/health`, (req, res) => {
 })
 app.use('/api/v1/schedules', schedulesRouter)
 app.use('/api/v1/year-levels', schedulesWithYlGRouter)
+app.use('/api/v1/students', StudentRouter)
+
+app.use(errorHandler)
 
 app.listen(3000, () => {
     console.log('server listening on port 3000')
 })
-
-app.use(errorHandler)
