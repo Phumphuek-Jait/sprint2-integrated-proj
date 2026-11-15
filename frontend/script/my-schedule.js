@@ -21,11 +21,22 @@ async function initpage(){
 
 async function loadMySchedule(studentId){
    const notStudentEl = document.getElementById("not-student-message")
-   const myScheduleSection = document.getElementById('status-message');
+   const myScheduleSection = document.getElementById('my-schedule-section');
    const courseOptionSection = document.getElementById("course-options-section");
+   const modal = document.getElementById('error-modal')
 
    try{
       const student = await getStudentProfile(studentId);
+
+      if(student.notFound){
+         notStudentEl.hidden = false;
+         myScheduleSection.hidden = true;
+         courseOptionSection.hidden = true;
+         return;
+      }
+
+      const studentProfile = document.getElementById('student-profile')
+      studentProfile.textContent = `Year ${student.yearLevel} · Group ${student.studentGroup}`
       if(student.notFound){
          notStudentEl.hidden = false
          myScheduleSection.hidden = true
@@ -62,22 +73,34 @@ async function loadMySchedule(studentId){
     })
 
     myScheduleSection.hidden = false
-    renderTable('my-schedule-body', myScheduleItems)
+    renderTable('my-schedule-body', myScheduleItems, 'No classes yet. Choose from Courses to Choose.')
 
-    courseOptionsSection.hidden = courseOptionItems.length === 0
+    courseOptionSection.hidden = courseOptionItems.length === 0
     renderTable('course-options-body', courseOptionItems)
 
   } catch (error) {
-    console.error('Error loading schedule:', error)
-    if (!modal.open) {
+   console.error('Error loading schedule:', error)
+   if (!modal.open) {
       modal.showModal()
-    }
+   }
   }
 }
 
-function renderTable(tbodyId, items) {
+function renderTable(tbodyId, items, emptyMessage = null) {
   const tbody = document.getElementById(tbodyId)
   tbody.replaceChildren()
+
+  if(items.length === 0 && emptyMessage){
+   const row = document.createElement('tr')
+   const cell = document.createElement('td')
+
+   row.dataset.testid = 'my-schedule-empty';
+   cell.colSpan = tbody.closest('table').querySelectorAll('thead th').length;
+   cell.textContent = emptyMessage;
+   row.append(cell);
+   tbody.append(row);
+   return;
+  }
 
   items.forEach((data) => {
     const row = document.createElement('tr')
@@ -92,6 +115,7 @@ function renderTable(tbodyId, items) {
       createCell('day', toCapitalize(data?.dayOfWeek)),
       createCell('time', `${data?.startTime}-${data?.endTime}`),
       createCell('weeks', `${data?.startWeek}-${data?.endWeek}`),
+      createCell('room', data?.room),
       createCell('remarks', data?.remarks)
     )
     tbody.append(row)

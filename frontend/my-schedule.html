@@ -13,10 +13,11 @@
     </div>
 
     <p id="not-student-message" data-testid="not-student" hidden>Your account is not a student of the BSc.IT program.</p>
-    <p id="lecturer-message" data-testid="lecturer-only" hidden>The lecturer view is comming soon</p>
+    <p id="lecturer-message" data-testid="lecturer-message" hidden>The lecturer view is comming soon</p>
 
     <section id="my-schedule-section" hidden>
         <h2>My Schedule</h2>
+        <p id="student-profile"></p>
         <table data-testid="my-schedule">
             <thead>
                 <tr>
@@ -28,6 +29,7 @@
                     <th>Day</th>
                     <th>Time</th>
                     <th>Weeks</th>
+                    <th>Room</th>
                     <th>Remarks</th>
                 </tr>
             </thead>
@@ -48,6 +50,7 @@
                     <th>Day</th>
                     <th>Time</th>
                     <th>Weeks</th>
+                    <th>Room</th>
                     <th>Remarks</th>
                 </tr>
             </thead>
@@ -55,7 +58,7 @@
         </table>
     </section>
 
-    <dialog id="error-modal" class="error-modal-overlay" colsedby="none">
+    <dialog id="error-modal" class="error-modal-overlay" closedby="none">
         <div class="error-modal-content">
             <p>There is a problem. Please try again later.</p>
         </div>
