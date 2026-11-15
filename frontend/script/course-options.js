@@ -1,6 +1,6 @@
 import { createCell, toCapitalize } from './utils/tableUtils.js'
 
-export function showCourseOptions(schedules, selections) {
+export function showCourseOptions(schedules, selections, onSelect) {
   const section = document.getElementById('course-options-section')
   const body = document.getElementById('course-options-body')
   const selectedCourseIds = new Set(selections.map((selection) => selection.courseId))
@@ -29,6 +29,13 @@ export function showCourseOptions(schedules, selections) {
     for (const [testId, value] of Object.entries(cells)) {
       row.append(createCell(testId, value))
     }
+    const action = document.createElement('td')
+    const button = document.createElement('button')
+    button.type = 'button'
+    button.textContent = 'Select'
+    button.addEventListener('click', () => onSelect(schedule.course.id, schedule.section, button))
+    action.append(button)
+    row.append(action)
     rows.append(row)
   }
 
