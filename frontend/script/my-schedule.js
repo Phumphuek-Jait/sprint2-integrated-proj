@@ -1,6 +1,6 @@
 import { requireSignIn, signOut } from './auth.js'
 
-const userSection = document.querySelector('[data-testid="user-name"]')
+const userSection = document.getElementById('user-info')
 const userNameElement = document.getElementById('user-display-name')
 const signOutButton = document.getElementById('sign-out-button')
 const userNameError = document.getElementById('user-name-error')
