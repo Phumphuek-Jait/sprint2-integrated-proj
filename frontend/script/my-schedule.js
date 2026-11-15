@@ -1,7 +1,7 @@
 import { requireSignIn, signOut } from './auth.js'
 
 const userNameElement = document.getElementById('user-display-name')
-const userSection = document.querySelector('[data-testid="user-name"]')
+const userSection = document.getElementById('user-info')
 const signOutButton = document.getElementById('sign-out-button')
 const authStatus = document.getElementById('auth-status')
 
@@ -18,16 +18,25 @@ async function initPage() {
   authStatus.hidden = false
 
   try {
-    // Anonymous visitors are redirected to Keycloak. Successful sign-in uses PKCE S256.
+    // Authenticate user with Keycloak
     const user = await requireSignIn()
 
-    userNameElement.textContent = user.name || user.username
+    // Display the user's name
+    userNameElement.textContent = user.name || user.username || 'User'
+
+    // Show the entire user section
     userSection.hidden = false
+
+    // Hide authentication status
     authStatus.hidden = true
+
+    // Enable Sign Out button
     signOutButton.disabled = false
 
+    // Handle Sign Out
     signOutButton.addEventListener('click', async () => {
       signOutButton.disabled = true
+
       try {
         await signOut()
       } catch (error) {
@@ -39,10 +48,15 @@ async function initPage() {
     })
   } catch (error) {
     console.error('My Schedule sign-in failed:', error)
+
     authStatus.textContent =
       'Unable to sign in. Please reload the page or contact the administrator.'
+
     authStatus.hidden = false
+
+    // Hide the entire user section if authentication fails
     userSection.hidden = true
+    signOutButton.disabled = true
   }
 }
 
