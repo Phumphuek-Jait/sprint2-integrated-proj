@@ -1,9 +1,8 @@
 import { requireSignIn, signOut } from './auth.js'
 
-const userSection = document.getElementById('user-info')
-const userNameElement = document.getElementById('user-display-name')
+const userAccount = document.getElementById('user-account')
+const userDisplayName = document.getElementById('user-display-name')
 const signOutButton = document.getElementById('sign-out-button')
-const userNameError = document.getElementById('user-name-error')
 
 function getDisplayName(user) {
   const name = typeof user?.name === 'string' ? user.name.trim() : ''
