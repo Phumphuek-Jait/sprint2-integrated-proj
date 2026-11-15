@@ -6,50 +6,32 @@
     <title>My Schedule</title>
     <link rel="stylesheet" href="Create.css" />
   </head>
-  <body>
-    <div hidden aria-live="polite">
-      <span>
-        Welcome,
-        <strong id="user-display-name" data-testid="user-name"></strong>
-      </span>
 
-      <button id="sign-out-button" type="button" disabled>Sign Out</button>
-    </div>
-    <p id="user-name-error" role="alert" hidden></p>
-    <section id="course-options-section" hidden>
-      <h2>Courses to Choose</h2>
-      <table data-testid="course-options">
-        <thead>
-          <tr>
-            <th>Code</th>
-            <th>Title</th>
-            <th>Type</th>
-            <th>Section</th>
-            <th>Group</th>
-            <th>Day</th>
-            <th>Time</th>
-            <th>Weeks</th>
-            <th>Room</th>
-            <th>Remarks</th>
-          </tr>
-        </thead>
-        <tbody id="course-options-body"></tbody>
-      </table>
-    </section>
+  <body>
     <main>
+      <!-- Authentication Status -->
       <p id="auth-status" role="status" aria-live="polite">
         Checking your sign-in with KMUTT account...
       </p>
 
-      <div id="user-info" hidden>
-        <span id="user-display-name" data-testid="user-name"></span>
+      <!-- User Information -->
+      <div id="user-info" hidden aria-live="polite">
+        <span>
+          Welcome,
+          <strong id="user-display-name" data-testid="user-name"></strong>
+        </span>
 
         <button id="sign-out-button" type="button" disabled>Sign Out</button>
       </div>
 
+      <!-- Username Error -->
+      <p id="user-name-error" role="alert" hidden></p>
+
+      <!-- Courses to Choose -->
       <section id="course-options-section" hidden>
         <h2>Courses to Choose</h2>
-        <table data-testid="course-options">
+
+        <table id="schedule" data-testid="course-options">
           <thead>
             <tr>
               <th>Code</th>
@@ -64,6 +46,7 @@
               <th>Remarks</th>
             </tr>
           </thead>
+
           <tbody id="course-options-body"></tbody>
         </table>
       </section>

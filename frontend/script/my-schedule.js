@@ -1,4 +1,3 @@
-\
 import { requireSignIn, signOut } from './auth.js'
 
 // HTML Elements
