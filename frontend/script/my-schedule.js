@@ -1,184 +1,172 @@
-//จักหน้า my-schedule
+
 import { requireSignIn, signOut } from "./auth.js";
 import { createCell, toCapitalize } from "./utils/tableUtils.js";
-import { getStudentProfile, loadSchedulebyYearAndGroup, getStudentSelection} from "./services/service.js";
+import {getStudentProfile,loadSchedulebyYearAndGroup,getStudentSelection} from "./services/service.js";
 
-async function initpage(){
-   const user = await requireSignIn()
-   document.getElementById("user-display-name").textContent = user.name;
-   document.getElementById("sign-out-button").addEventListener('click', () => {
-    signOut();
-   });
+const userNameElement = document.getElementById("user-display-name");
+const userSection = document.getElementById("user-info");
+const signOutButton = document.getElementById("sign-out-button");
+const authStatus = document.getElementById("auth-status");
 
-   if(user.roles && user.roles.includes("lecturer")){
-      document.getElementById("lecturer-message").hidden = false
-      return
-   }
+async function initPage() {
+  if (!userNameElement || !userSection || !signOutButton || !authStatus) {
+    console.error("My Schedule authentication elements are missing.");
+    return;
+  }
 
-   const studentId = user.username;
-   await loadMySchedule(studentId) 
-}
+  signOutButton.disabled = true;
+  authStatus.textContent = "Checking your sign-in with KMUTT account...";
+  authStatus.hidden = false;
 
-async function loadMySchedule(studentId){
-   const notStudentEl = document.getElementById("not-student-message")
-   const myScheduleSection = document.getElementById('my-schedule-section');
-   const courseOptionSection = document.getElementById("course-options-section");
-   const modal = document.getElementById('error-modal')
+  try {
+    const user = await requireSignIn();
 
-   try{
-      const student = await getStudentProfile(studentId);
+    userNameElement.textContent = user.name || user.username || "User";
+    userSection.hidden = false;
+    authStatus.hidden = true;
+    signOutButton.disabled = false;
 
-      if(student.notFound){
-         notStudentEl.hidden = false;
-         myScheduleSection.hidden = true;
-         courseOptionSection.hidden = true;
-         return;
+    signOutButton.addEventListener("click", async () => {
+      signOutButton.disabled = true;
+
+      try {
+        await signOut();
+      } catch (error) {
+        console.error("Unable to sign out:", error);
+        authStatus.textContent = "Unable to sign out. Please try again.";
+        authStatus.hidden = false;
+        signOutButton.disabled = false;
       }
+    });
 
-      const studentProfile = document.getElementById('student-profile')
-      studentProfile.textContent = `Year ${student.yearLevel} · Group ${student.studentGroup}`
-      if(student.notFound){
-         notStudentEl.hidden = false
-         myScheduleSection.hidden = true
-         courseOptionSection.hidden = true
-         return;
-      }
+    if (user.roles && user.roles.includes("lecturer")) {
+      document.getElementById("lecturer-message").hidden = false;
+      return;
+    }
 
-      
-
-      const [schedules, selections] = await Promise.all([
-         loadSchedulebyYearAndGroup(student.yearLevel, student.studentGroup),
-         getStudentSelection(studentId)
-      ])
-
-      const myScheduleItems = []
-      const courseOptionItems = []
-
-      schedules.forEach((schedule) => {
-         const courseId = schedule.course?.id ?? schedule.courseId
-         const matchedSelection = selections.find((sel) => {
-            const selCourseId = sel.courseId ?? sel.course?.id
-            return selCourseId === courseId
-         })
-
-      if (schedule.fixed) {
-        myScheduleItems.push(schedule)
-      } else if (matchedSelection) {
-        if (schedule.section === matchedSelection.section) {
-          myScheduleItems.push(schedule)
-        }
-      } else {
-        courseOptionItems.push(schedule)
-      }
-    })
-
-    myScheduleSection.hidden = false
-    renderTable('my-schedule-body', myScheduleItems, 'No classes yet. Choose from Courses to Choose.')
-
-    courseOptionSection.hidden = courseOptionItems.length === 0
-    renderTable('course-options-body', courseOptionItems)
+    await loadMySchedule(user.username);
 
   } catch (error) {
-   console.error('Error loading schedule:', error)
-   if (!modal.open) {
-      modal.showModal()
-   }
+    console.error("My Schedule sign-in failed:", error);
+
+    authStatus.textContent =
+      "Unable to sign in. Please reload the page or contact the administrator.";
+
+    authStatus.hidden = false;
+    userSection.hidden = true;
+    signOutButton.disabled = true;
+  }
+}
+
+initPage();
+
+async function loadMySchedule(studentId) {
+  const notStudentEl = document.getElementById("not-student-message");
+  const myScheduleSection = document.getElementById("my-schedule-section");
+  const courseOptionSection = document.getElementById("course-options-section");
+  const modal = document.getElementById("error-modal");
+
+  modal.addEventListener("cancel", (event) => {
+    event.preventDefault();
+  });
+
+  try {
+    const student = await getStudentProfile(studentId);
+
+    if (!student || student.notFound) {
+      notStudentEl.hidden = false;
+      myScheduleSection.hidden = true;
+      courseOptionSection.hidden = true;
+      return;
+    }
+
+    const studentProfile = document.getElementById("student-profile");
+    studentProfile.textContent =
+      `Year ${student.yearLevel} · Group ${student.studentGroup}`;
+
+    const [schedules, selections] = await Promise.all([
+      loadSchedulebyYearAndGroup(student.yearLevel, student.studentGroup),
+      getStudentSelection(studentId)
+    ]);
+
+    const myScheduleItems = [];
+    const courseOptionItems = [];
+
+    schedules.forEach((schedule) => {
+      const courseId = schedule.course?.id ?? schedule.courseId;
+
+      const matchedSelection = selections.find((sel) => {
+        const selCourseId = sel.courseId ?? sel.course?.id;
+        return selCourseId === courseId;
+      });
+
+      if (schedule.fixed) {
+        myScheduleItems.push(schedule);
+      } else if (matchedSelection) {
+        if (schedule.section === matchedSelection.section) {
+          myScheduleItems.push(schedule);
+        }
+      } else {
+        courseOptionItems.push(schedule);
+      }
+    });
+
+    myScheduleSection.hidden = false;
+
+    renderTable(
+      "my-schedule-body",
+      myScheduleItems,
+      "No classes yet. Choose from Courses to Choose."
+    );
+
+    courseOptionSection.hidden = courseOptionItems.length === 0;
+    renderTable("course-options-body", courseOptionItems);
+
+  } catch (error) {
+    console.error("Error loading schedule:", error);
+
+    if (!modal.open) {
+      modal.showModal();
+    }
   }
 }
 
 function renderTable(tbodyId, items, emptyMessage = null) {
-  const tbody = document.getElementById(tbodyId)
-  tbody.replaceChildren()
+  const tbody = document.getElementById(tbodyId);
+  tbody.replaceChildren();
 
-  if(items.length === 0 && emptyMessage){
-   const row = document.createElement('tr')
-   const cell = document.createElement('td')
+  if (items.length === 0 && emptyMessage) {
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
 
-   row.dataset.testid = 'my-schedule-empty';
-   cell.colSpan = tbody.closest('table').querySelectorAll('thead th').length;
-   cell.textContent = emptyMessage;
-   row.append(cell);
-   tbody.append(row);
-   return;
+    row.dataset.testid = "my-schedule-empty";
+    cell.colSpan = tbody.closest("table").querySelectorAll("thead th").length;
+    cell.textContent = emptyMessage;
+
+    row.append(cell);
+    tbody.append(row);
+    return;
   }
 
   items.forEach((data) => {
-    const row = document.createElement('tr')
-    row.dataset.testid = 'schedule-row'
+    const row = document.createElement("tr");
+    row.dataset.testid = "schedule-row";
 
     row.append(
-      createCell('code', data?.course?.code),
-      createCell('title', data?.course?.title),
-      createCell('type', data?.course?.type),
-      createCell('section', data?.section),
-      createCell('group', data?.studentGroup),
-      createCell('day', toCapitalize(data?.dayOfWeek)),
-      createCell('time', `${data?.startTime}-${data?.endTime}`),
-      createCell('weeks', `${data?.startWeek}-${data?.endWeek}`),
-      createCell('room', data?.room),
-      createCell('remarks', data?.remarks)
-    )
-    tbody.append(row)
-  })
+      createCell("code", data?.course?.code),
+      createCell("title", data?.course?.title),
+      createCell("type", data?.course?.type),
+      createCell("section", data?.section),
+      createCell("group", data?.studentGroup),
+      createCell("day", toCapitalize(data?.dayOfWeek)),
+      createCell("time", `${data?.startTime}-${data?.endTime}`),
+      createCell("weeks", `${data?.startWeek}-${data?.endWeek}`),
+      createCell("room", data?.room),
+      createCell("remarks", data?.remarks)
+    );
 
-const userNameElement = document.getElementById('user-display-name')
-const userSection = document.getElementById('user-info')
-const signOutButton = document.getElementById('sign-out-button')
-const authStatus = document.getElementById('auth-status')
-
-async function initPage() {
-  if (!userNameElement || !userSection || !signOutButton || !authStatus) {
-    console.error(
-      'My Schedule authentication elements are missing from the page.'
-    )
-    return
-  }
-
-  signOutButton.disabled = true
-  authStatus.textContent = 'Checking your sign-in with KMUTT account...'
-  authStatus.hidden = false
-
-  try {
-    // Authenticate user with Keycloak
-    const user = await requireSignIn()
-
-    // Display the user's name
-    userNameElement.textContent = user.name || user.username || 'User'
-
-    // Show the entire user section
-    userSection.hidden = false
-
-    // Hide authentication status
-    authStatus.hidden = true
-
-    // Enable Sign Out button
-    signOutButton.disabled = false
-
-    // Handle Sign Out
-    signOutButton.addEventListener('click', async () => {
-      signOutButton.disabled = true
-
-      try {
-        await signOut()
-      } catch (error) {
-        console.error('Unable to sign out from Keycloak:', error)
-        authStatus.textContent = 'Unable to sign out. Please try again.'
-        authStatus.hidden = false
-        signOutButton.disabled = false
-      }
-    })
-  } catch (error) {
-    console.error('My Schedule sign-in failed:', error)
-
-    authStatus.textContent =
-      'Unable to sign in. Please reload the page or contact the administrator.'
-
-    authStatus.hidden = false
-
-    // Hide the entire user section if authentication fails
-    userSection.hidden = true
-    signOutButton.disabled = true
-  }
+    tbody.append(row);
+  });
 }
 
-initPage()
+

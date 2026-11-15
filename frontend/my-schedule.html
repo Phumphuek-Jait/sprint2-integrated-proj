@@ -7,17 +7,19 @@
     <link rel="stylesheet" href="Create.css">
 </head>
 <body>
-    <div data-testid="user-name">
+    <div id="user-info" data-testid="user-name">
         <span id="user-display-name"></span>
         <button id="sign-out-button">Sign Out</button>
     </div>
 
+    <p id="auth-status" hidden></p>
+
     <p id="not-student-message" data-testid="not-student" hidden>Your account is not a student of the BSc.IT program.</p>
-    <p id="lecturer-message" data-testid="lecturer-message" hidden>The lecturer view is comming soon</p>
+    <p id="lecturer-message" data-testid="lecturer-message" hidden>The lecturer view is coming soon</p>
 
     <section id="my-schedule-section" hidden>
         <h2>My Schedule</h2>
-        <p id="student-profile"></p>
+        <p id="student-profile" data-testid="student-profile"></p>
         <table data-testid="my-schedule">
             <thead>
                 <tr>
