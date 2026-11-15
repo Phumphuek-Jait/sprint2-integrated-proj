@@ -18,7 +18,7 @@ export const errorHandler = (err, req, res, next) => {
     let message = err.message || 'An unexpected error occurred';
 
     // ตรวจจับและแปลง MySQL Error Codes เป็น Client Error
-    if (err.code === 'ER_DUP_ENTRY') {
+    if (err.code === 'ER_DUP_ENTRY' || err.code === 'P2002') {
         statusCode = 409;
         errorCode = 'DUPLICATE_KEY';
         message = 'Resource already exists (Primary key or unique constraint violation)';
