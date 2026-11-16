@@ -82,9 +82,8 @@ export const createStudentSelection = async (id, courseId, section) => {
     );
     if (!available) throw new AppError('This section is not available.', 404);
 
-    const now = new Date();
     return prisma.selection.create({
-        data: { studentId: id, courseId, section, createdAt: now, updatedAt: now },
+        data: { studentId: id, courseId, section },
     });
 };
 
@@ -121,3 +120,21 @@ export const deleteStudentSelectionsByCourse = async (studentId, courseId) => {
         }
     });
 }
+
+export const updateStudentSelection = async (studentId, courseId, section) => {
+    const student = await getStudentProfileById(studentId);
+    if (!student) throw new AppError('Student not found.', 404);
+    if (!Number.isInteger(courseId) || courseId <= 0 || !Number.isInteger(section) || section < 1 || section > 99) {
+        throw new AppError('Invalid courseId or section.', 400);
+    }
+    const where = { studentId_courseId: { studentId, courseId } };
+    const selection = await prisma.selection.findUnique({ where });
+    if (!selection) throw new AppError('Selection not found.', 404);
+    const schedules = await getSchedulesByYearLevelAndGroup(student.yearLevel, student.studentGroup);
+    const available = schedules.some((schedule) =>
+        schedule.course.id === courseId && schedule.section === section && !schedule.fixed
+    );
+    if (!available) throw new AppError('Section not found.', 404);
+    if (selection.section === section) return selection;
+    return prisma.selection.update({ where, data: { section } });
+};
