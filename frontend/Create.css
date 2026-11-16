@@ -1,3 +1,4 @@
+/* Buttons */
 #buttons {
   display: flex;
   gap: 10px;
@@ -10,11 +11,9 @@
   border: 2px solid #234e70;
   border-radius: 8px;
   padding: 8px 18px;
-  border-color: #234e70;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  /* transition: all 0.2s; */
 }
 
 #buttons button:hover {
@@ -22,13 +21,13 @@
   color: white;
 }
 
+/* Schedule Table */
 #schedule {
   width: 100%;
   border-collapse: collapse;
   background-color: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 6px;
-  /* overflow: hidden; */
 }
 
 #schedule th,
@@ -45,6 +44,7 @@
   font-weight: 600;
 }
 
+/* Error Modal */
 .error-modal-overlay {
   border: none;
   padding: 0;
@@ -71,8 +71,7 @@
   color: red;
 }
 
-/* My Schedule button */
-
+/* My Schedule Button */
 #page-header {
   display: flex;
   flex-wrap: wrap;
@@ -99,4 +98,73 @@
 .my-schedule-button:focus-visible {
   background-color: #234e70;
   color: white;
+}
+
+/* =================================
+   User Account
+================================= */
+
+#user-account {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+#user-account[hidden] {
+  display: none;
+}
+
+/* Username */
+#user-display-name {
+  color: #234e70;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Sign Out Button */
+#sign-out-button {
+  background-color: white;
+  color: #234e70;
+  border: 2px solid #234e70;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#sign-out-button:hover:not(:disabled),
+#sign-out-button:focus-visible {
+  background-color: #234e70;
+  color: white;
+}
+
+#sign-out-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Student Profile */
+#student-profile {
+  margin-top: 12px;
+  color: #234e70;
+  font-size: 15px;
+}
+
+/* Student / Lecturer Messages */
+#not-student-message,
+#lecturer-message {
+  margin-top: 12px;
+  color: #234e70;
+}
+
+/* Respect hidden attributes */
+#student-profile[hidden],
+#not-student-message[hidden],
+#lecturer-message[hidden] {
+  display: none;
 }
