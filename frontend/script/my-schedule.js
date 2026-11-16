@@ -1,232 +1,384 @@
+import { requireSignIn, signOut } from './auth.js'
 
-import { requireSignIn, signOut, authFetch } from "./auth.js";
-import { createCell, toCapitalize } from "./utils/tableUtils.js";
-import {getStudentProfile,loadSchedulebyYearAndGroup,getStudentSelection} from "./services/service.js";
+import { loadStudentProfile } from './services/profile-service.js'
 
-const userNameElement = document.getElementById("user-display-name");
-const userSection = document.getElementById("user-info");
-const signOutButton = document.getElementById("sign-out-button");
-const authStatus = document.getElementById("auth-status");
-const selectionDialog = document.getElementById("selection-message");
-document.getElementById("selection-message-ok").addEventListener("click", () => selectionDialog.close());
+import { loadCourseSchedules } from './services/course-options-service.js'
 
-function showSelectionMessage(message) {
-  document.getElementById("selection-message-text").textContent = message;
-  if (!selectionDialog.open) selectionDialog.showModal();
+import {
+  loadStudentSelections,
+  createStudentSelection
+} from './services/student-selection-service.js'
+
+import { createCell, toCapitalize } from './utils/tableUtils.js'
+
+import { showCourseOptions } from './course-options.js'
+
+// Authentication Elements
+const userSection = document.getElementById('user-info')
+const userNameElement = document.getElementById('user-display-name')
+const signOutButton = document.getElementById('sign-out-button')
+const authStatus = document.getElementById('auth-status')
+
+// Profile Elements
+const studentProfile = document.getElementById('student-profile')
+const notStudentMessage = document.getElementById('not-student')
+const lecturerMessage = document.getElementById('lecturer-message')
+
+// Schedule Elements
+const myScheduleSection = document.getElementById('my-schedule-section')
+const myScheduleBody = document.getElementById('my-schedule-body')
+
+const courseOptionsSection = document.getElementById('course-options-section')
+const courseOptionsBody = document.getElementById('course-options-body')
+
+// Dialog Elements
+const errorModal = document.getElementById('error-modal')
+const selectionDialog = document.getElementById('selection-message')
+const selectionMessageText = document.getElementById('selection-message-text')
+const selectionMessageOk = document.getElementById('selection-message-ok')
+
+// Application State
+let studentId = null
+let schedules = []
+let selections = []
+let refreshSelectionsAfterDialogClose = false
+
+// Get Safe Display Name
+function getDisplayName(user) {
+  const name = typeof user?.name === 'string' ? user.name.trim() : ''
+
+  const username =
+    typeof user?.username === 'string' ? user.username.trim() : ''
+
+  return name || username || 'User'
 }
 
-async function selectCourse(studentId, schedule, button, onSelected, onConflict) {
-  button.disabled = true;
-  try {
-    const response = await authFetch(new URL(`api/v1/students/${encodeURIComponent(studentId)}/selections`, document.baseURI), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ courseId: schedule.course.id, section: schedule.section })
-    });
-    if (response.status === 409) {
-      selectionDialog.addEventListener("close", onConflict, { once: true });
-      showSelectionMessage("This course is already in your schedule.");
-      button.disabled = false;
-      return;
-    }
-    if (!response.ok) throw new Error(`Selection failed: ${response.status}`);
-    onSelected(await response.json());
-  } catch (error) {
-    console.error(error);
-    button.disabled = false;
-    showSelectionMessage("There is a problem. Please try again later.");
+// Show Error Dialog
+function showErrorModal() {
+  if (errorModal && !errorModal.open) {
+    errorModal.showModal()
   }
 }
 
+// Show Selection Message
+function showSelectionMessage(message, refreshAfterClose = false) {
+  selectionMessageText.textContent = message
+
+  refreshSelectionsAfterDialogClose = refreshAfterClose
+
+  if (!selectionDialog.open) {
+    selectionDialog.showModal()
+  }
+}
+
+// Get Course ID from different response formats
+function getCourseId(item) {
+  return Number(item?.courseId ?? item?.course?.id)
+}
+
+// Render My Schedule
+function renderMySchedule() {
+  const selectedSections = new Map(
+    selections.map((selection) => [
+      getCourseId(selection),
+      Number(selection.section)
+    ])
+  )
+
+  // Fixed courses + selected option sections
+  const myScheduleItems = schedules.filter((schedule) => {
+    if (schedule.fixed) {
+      return true
+    }
+
+    const courseId = getCourseId(schedule)
+
+    const selectedSection = selectedSections.get(courseId)
+
+    return selectedSection === Number(schedule.section)
+  })
+
+  myScheduleBody.replaceChildren()
+
+  // Empty message
+  if (myScheduleItems.length === 0) {
+    const row = document.createElement('tr')
+    const cell = document.createElement('td')
+
+    cell.colSpan = 10
+
+    cell.dataset.testid = 'my-schedule-empty'
+
+    cell.textContent = 'No classes yet. Choose from Courses to Choose.'
+
+    row.append(cell)
+
+    myScheduleBody.append(row)
+  } else {
+    const rows = document.createDocumentFragment()
+
+    myScheduleItems.forEach((schedule) => {
+      const row = document.createElement('tr')
+
+      row.dataset.testid = 'schedule-row'
+
+      row.append(
+        createCell('code', schedule.course?.code),
+        createCell('title', schedule.course?.title),
+        createCell('type', schedule.course?.type),
+        createCell('section', schedule.section),
+        createCell('group', schedule.studentGroup),
+        createCell('day', toCapitalize(schedule.dayOfWeek)),
+        createCell(
+          'time',
+          `${schedule.startTime ?? ''}-${schedule.endTime ?? ''}`
+        ),
+        createCell(
+          'weeks',
+          `${schedule.startWeek ?? ''}-${schedule.endWeek ?? ''}`
+        ),
+        createCell('room', schedule.room),
+        createCell('remarks', schedule.remarks)
+      )
+
+      rows.append(row)
+    })
+
+    myScheduleBody.append(rows)
+  }
+
+  myScheduleSection.hidden = false
+}
+
+// Render Both Tables
+function renderTables() {
+  // Render My Schedule
+  renderMySchedule()
+
+  // Render Courses to Choose
+  showCourseOptions(schedules, selections, handleSelect)
+}
+
+// Handle Select Button
+async function handleSelect(schedule, button) {
+  const courseId = getCourseId(schedule)
+  const section = Number(schedule.section)
+
+  button.disabled = true
+
+  try {
+    // Create Selection through Backend API
+    const newSelection = await createStudentSelection(
+      studentId,
+      courseId,
+      section
+    )
+
+    // Update local selections
+    selections = [
+      ...selections.filter((selection) => getCourseId(selection) !== courseId),
+      newSelection
+    ]
+
+    // Re-render without page reload or additional GET requests
+    renderTables()
+  } catch (error) {
+    console.error('Unable to select course:', error)
+
+    if (error.status === 409) {
+      showSelectionMessage('This course is already in your schedule.', true)
+    } else {
+      showSelectionMessage('There is a problem. Please try again later.')
+    }
+  } finally {
+    if (button.isConnected) {
+      button.disabled = false
+    }
+  }
+}
+
+// Refresh Selections after Conflict
+async function refreshSelections() {
+  try {
+    selections = await loadStudentSelections(studentId)
+
+    renderTables()
+  } catch (error) {
+    console.error('Unable to refresh selections:', error)
+
+    showErrorModal()
+  }
+}
+
+// Initialize Page
 async function initPage() {
-  if (!userNameElement || !userSection || !signOutButton || !authStatus) {
-    console.error("My Schedule authentication elements are missing.");
-    return;
+  // Check Required HTML Elements
+  const requiredElements = [
+    userSection,
+    userNameElement,
+    signOutButton,
+    authStatus,
+    studentProfile,
+    notStudentMessage,
+    lecturerMessage,
+    myScheduleSection,
+    myScheduleBody,
+    courseOptionsSection,
+    courseOptionsBody,
+    errorModal,
+    selectionDialog,
+    selectionMessageText,
+    selectionMessageOk
+  ]
+
+  if (requiredElements.some((element) => !element)) {
+    console.error('My Schedule HTML elements are missing.')
+    return
   }
 
-  signOutButton.disabled = true;
-  authStatus.textContent = "Checking your sign-in with KMUTT account...";
-  authStatus.hidden = false;
+  // Initial State
+  userSection.hidden = true
+  signOutButton.disabled = true
+
+  studentProfile.hidden = true
+  notStudentMessage.hidden = true
+  lecturerMessage.hidden = true
+
+  myScheduleSection.hidden = true
+  courseOptionsSection.hidden = true
+
+  // Error Dialog cannot close with Escape
+  errorModal.addEventListener('cancel', (event) => {
+    event.preventDefault()
+  })
+
+  // Selection Dialog: OK Button
+  selectionMessageOk.addEventListener('click', () => {
+    selectionDialog.close()
+  })
+
+  // Selection Dialog: Close Event
+  selectionDialog.addEventListener('close', () => {
+    if (refreshSelectionsAfterDialogClose) {
+      refreshSelectionsAfterDialogClose = false
+
+      void refreshSelections()
+    }
+  })
+
+  // Sign Out
+  signOutButton.addEventListener('click', async () => {
+    signOutButton.disabled = true
+
+    try {
+      await signOut()
+    } catch (error) {
+      console.error('Unable to sign out:', error)
+
+      authStatus.textContent = 'Unable to sign out. Please try again.'
+
+      authStatus.hidden = false
+
+      signOutButton.disabled = false
+    }
+  })
+
+  // 1. Authenticate User
+  let user
 
   try {
-    const user = await requireSignIn();
-
-    userNameElement.textContent = user.name || user.username || "User";
-    userSection.hidden = false;
-    authStatus.hidden = true;
-    signOutButton.disabled = false;
-
-    signOutButton.addEventListener("click", async () => {
-      signOutButton.disabled = true;
-
-      try {
-        await signOut();
-      } catch (error) {
-        console.error("Unable to sign out:", error);
-        authStatus.textContent = "Unable to sign out. Please try again.";
-        authStatus.hidden = false;
-        signOutButton.disabled = false;
-      }
-    });
-
-    if (user.roles && user.roles.includes("lecturer")) {
-      document.getElementById("lecturer-message").hidden = false;
-      return;
-    }
-
-    await loadMySchedule(user.username);
-
+    user = await requireSignIn()
   } catch (error) {
-    console.error("My Schedule sign-in failed:", error);
+    console.error('My Schedule sign-in failed:', error)
 
     authStatus.textContent =
-      "Unable to sign in. Please reload the page or contact the administrator.";
+      'Unable to sign in. Please reload the page or contact the administrator.'
 
-    authStatus.hidden = false;
-    userSection.hidden = true;
-    signOutButton.disabled = true;
+    authStatus.hidden = false
+
+    return
   }
-}
 
-initPage();
+  // 2. Display User Information
+  studentId = user.username
 
-async function loadMySchedule(studentId) {
-  const notStudentEl = document.getElementById("not-student-message");
-  const myScheduleSection = document.getElementById("my-schedule-section");
-  const courseOptionSection = document.getElementById("course-options-section");
-  const modal = document.getElementById("error-modal");
+  userNameElement.textContent = getDisplayName(user)
 
-  modal.addEventListener("cancel", (event) => {
-    event.preventDefault();
-  });
+  userSection.hidden = false
+
+  signOutButton.disabled = false
+
+  authStatus.hidden = true
+
+  // 3. Check User Roles
+  const roles = Array.isArray(user.roles)
+    ? user.roles.map((role) =>
+        typeof role === 'string' ? role.toLowerCase() : ''
+      )
+    : []
+
+  // Lecturer
+  if (roles.includes('lecturer')) {
+    lecturerMessage.hidden = false
+
+    // Lecturer does not request student data
+    return
+  }
+
+  // Not a Student
+  if (!roles.includes('student')) {
+    notStudentMessage.hidden = false
+
+    return
+  }
+
+  // 4. Load Student Profile
+  let profile
 
   try {
-    const student = await getStudentProfile(studentId);
-
-    if (!student || student.notFound) {
-      notStudentEl.hidden = false;
-      myScheduleSection.hidden = true;
-      courseOptionSection.hidden = true;
-      return;
-    }
-
-    const studentProfile = document.getElementById("student-profile");
-    studentProfile.textContent =
-      `Year ${student.yearLevel} · Group ${student.studentGroup}`;
-
-    const [schedules, selections] = await Promise.all([
-      loadSchedulebyYearAndGroup(student.yearLevel, student.studentGroup),
-      getStudentSelection(studentId)
-    ]);
-
-    function refreshTables() {
-      renderSchedules(schedules, selections, studentId, (selection) => {
-        selections.push(selection);
-        refreshTables();
-      }, async () => {
-        try {
-          const currentSelections = await getStudentSelection(studentId);
-          selections.splice(0, selections.length, ...currentSelections);
-          refreshTables();
-        } catch (error) {
-          console.error(error);
-          showSelectionMessage("There is a problem. Please try again later.");
-        }
-      });
-    }
-    refreshTables();
+    profile = await loadStudentProfile(studentId)
   } catch (error) {
-    console.error("Error loading schedule:", error);
+    console.error('Unable to load student profile:', error)
 
-    if (!modal.open) {
-      modal.showModal();
-    }
-  }
-}
-
-function renderSchedules(schedules, selections, studentId, onSelected, onConflict) {
-  const myScheduleSection = document.getElementById("my-schedule-section");
-  const courseOptionSection = document.getElementById("course-options-section");
-  const myScheduleItems = [];
-  const courseOptionItems = [];
-
-  schedules.forEach((schedule) => {
-    const courseId = schedule.course?.id ?? schedule.courseId;
-
-    const matchedSelection = selections.find((sel) => {
-      const selCourseId = sel.courseId ?? sel.course?.id;
-      return selCourseId === courseId;
-    });
-
-    if (schedule.fixed) {
-      myScheduleItems.push(schedule);
-    } else if (matchedSelection) {
-      if (schedule.section === matchedSelection.section) {
-        myScheduleItems.push(schedule);
-      }
+    if (error.status === 404) {
+      notStudentMessage.hidden = false
     } else {
-      courseOptionItems.push(schedule);
+      showErrorModal()
     }
-  });
 
-  myScheduleSection.hidden = false;
-
-  renderTable(
-    "my-schedule-body",
-    myScheduleItems,
-    "No classes yet. Choose from Courses to Choose."
-  );
-
-  courseOptionSection.hidden = courseOptionItems.length === 0;
-  renderTable("course-options-body", courseOptionItems, null, studentId, onSelected, onConflict);
-}
-
-function renderTable(tbodyId, items, emptyMessage = null, studentId = null, onSelected = null, onConflict = null) {
-  const tbody = document.getElementById(tbodyId);
-  tbody.replaceChildren();
-
-  if (items.length === 0 && emptyMessage) {
-    const row = document.createElement("tr");
-    const cell = document.createElement("td");
-
-    row.dataset.testid = "my-schedule-empty";
-    cell.colSpan = tbody.closest("table").querySelectorAll("thead th").length;
-    cell.textContent = emptyMessage;
-
-    row.append(cell);
-    tbody.append(row);
-    return;
+    return
   }
 
-  items.forEach((data) => {
-    const row = document.createElement("tr");
-    row.dataset.testid = "schedule-row";
+  // 5. Display Year and Group
+  studentProfile.textContent = `Year ${profile.yearLevel} · Group ${profile.studentGroup}`
 
-    row.append(
-      createCell("code", data?.course?.code),
-      createCell("title", data?.course?.title),
-      createCell("type", data?.course?.type),
-      createCell("section", data?.section),
-      createCell("group", data?.studentGroup),
-      createCell("day", toCapitalize(data?.dayOfWeek)),
-      createCell("time", `${data?.startTime}-${data?.endTime}`),
-      createCell("weeks", `${data?.startWeek}-${data?.endWeek}`),
-      createCell("room", data?.room),
-      createCell("remarks", data?.remarks)
-    );
+  studentProfile.hidden = false
 
-    if (studentId !== null) {
-      const cell = document.createElement("td");
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = "Select";
-      button.addEventListener("click", () => selectCourse(studentId, data, button, onSelected, onConflict));
-      cell.append(button);
-      row.append(cell);
+  // 6. Load Schedules and Selections Exactly Once
+  try {
+    const [scheduleData, selectionData] = await Promise.all([
+      loadCourseSchedules(profile.yearLevel, profile.studentGroup),
+
+      loadStudentSelections(studentId)
+    ])
+
+    if (!Array.isArray(scheduleData) || !Array.isArray(selectionData)) {
+      throw new Error(
+        'The schedules or selections API returned an invalid response.'
+      )
     }
 
-    tbody.append(row);
-  });
+    schedules = scheduleData
+    selections = selectionData
+
+    // 7. Render Both Tables
+    renderTables()
+  } catch (error) {
+    console.error('Unable to load student schedules:', error)
+
+    showErrorModal()
+  }
 }
 
-
+// Start Application
+initPage()

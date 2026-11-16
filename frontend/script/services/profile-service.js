@@ -13,7 +13,6 @@ async function loadStudentProfile(studentId) {
   if (response.status === 404) {
     const error = new Error('Student profile not found')
     error.status = 404
-
     throw error
   }
 
@@ -22,13 +21,10 @@ async function loadStudentProfile(studentId) {
     const error = new Error(
       `Failed to load student profile: ${response.status}`
     )
-
     error.status = response.status
-
     throw error
   }
 
-  // Convert JSON response to JavaScript object
   return await response.json()
 }
 
