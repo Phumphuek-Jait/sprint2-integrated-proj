@@ -52,4 +52,18 @@ async function deleteStudentSelection(studentId, courseId){
     throw error
   }
 }
-export { loadStudentSelections, createStudentSelection, deleteStudentSelection}
+async function changeStudentSelection(studentId, courseId, section) {
+  const response = await authFetch(`${apiURL}/${encodeURIComponent(studentId)}/selections/${encodeURIComponent(courseId)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ section })
+  })
+  if (response.status !== 200) {
+    const error = new Error('Unable to change section')
+    error.status = response.status
+    throw error
+  }
+  return response.json()
+}
+
+export { loadStudentSelections, createStudentSelection, deleteStudentSelection, changeStudentSelection }

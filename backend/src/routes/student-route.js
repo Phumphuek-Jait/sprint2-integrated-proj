@@ -1,5 +1,5 @@
 import express from 'express';
-import { getStudentProfileById, getStudentSelections, createStudentSelection, deleteStudentSelections, deleteStudentSelectionsByCourse} from '../services/student-service.js';
+import { getStudentProfileById, getStudentSelections, createStudentSelection, deleteStudentSelections, deleteStudentSelectionsByCourse, updateStudentSelection} from '../services/student-service.js';
 import { AppError } from '../middlewares/error-handler.js';
 
 const router = express.Router();
@@ -8,6 +8,12 @@ router.post('/:id/selections', async (req, res) => {
     const { courseId, section } = req.body ?? {};
     const selection = await createStudentSelection(req.params.id, courseId, section);
     return res.status(201).json(selection);
+});
+
+router.put('/:id/selections/:courseId', async (req, res) => {
+    const courseId = /^[0-9]+$/.test(req.params.courseId) ? Number(req.params.courseId) : NaN;
+    const selection = await updateStudentSelection(req.params.id, courseId, req.body?.section);
+    return res.status(200).json(selection);
 });
 
 router.get('/:id/selections', async (req, res) => {

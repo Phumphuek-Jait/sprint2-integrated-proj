@@ -7,7 +7,8 @@ import { loadCourseSchedules } from './services/course-options-service.js'
 import {
   loadStudentSelections,
   createStudentSelection,
-  deleteStudentSelection
+  deleteStudentSelection,
+  changeStudentSelection
 } from './services/student-selection-service.js'
 
 import { createCell, toCapitalize } from './utils/tableUtils.js'
@@ -37,6 +38,13 @@ const errorModal = document.getElementById('error-modal')
 const selectionDialog = document.getElementById('selection-message')
 const selectionMessageText = document.getElementById('selection-message-text')
 const selectionMessageOk = document.getElementById('selection-message-ok')
+const changeDialog = document.getElementById('change-dialog')
+const changeForm = document.getElementById('change-form')
+const changeCourse = document.getElementById('change-course')
+const changeCurrent = document.getElementById('change-current')
+const changeOptions = document.getElementById('change-options')
+const changeConfirm = document.getElementById('change-confirm')
+const changeCancel = document.getElementById('change-cancel')
 const removeDialog = document.getElementById('remove-dialog')
 const removeDialogText = document.getElementById('remove-dialog-text')
 const removeDialogConfirm = document.getElementById('remove-dialog-confirm')
@@ -48,6 +56,7 @@ let schedules = []
 let selections = []
 let refreshSelectionsAfterDialogClose = false
 let pendingRemoveCourseId = null
+let pendingChangeCourseId = null
 
 // Get Safe Display Name
 function getDisplayName(user) {
@@ -135,6 +144,13 @@ function renderMySchedule() {
           openRemoveDialog(schedule)
         })
         actionCell.append(removeButton)
+        if (getAlternativeSections(schedule).length > 0) {
+          const changeButton = document.createElement('button')
+          changeButton.type = 'button'
+          changeButton.textContent = 'Change'
+          changeButton.addEventListener('click', () => openChangeDialog(schedule))
+          actionCell.append(changeButton)
+        }
       }
 
       row.dataset.testid = 'schedule-row'
@@ -166,6 +182,62 @@ function renderMySchedule() {
   }
 
   myScheduleSection.hidden = false
+}
+
+function getAlternativeSections(schedule) {
+  const options = new Map()
+  for (const item of schedules) {
+    if (!item.fixed && getCourseId(item) === getCourseId(schedule) &&
+        Number(item.section) !== Number(schedule.section) && !options.has(Number(item.section))) {
+      options.set(Number(item.section), item)
+    }
+  }
+  return [...options.values()].sort((a, b) => Number(a.section) - Number(b.section))
+}
+
+function openChangeDialog(schedule) {
+  pendingChangeCourseId = getCourseId(schedule)
+  changeCourse.textContent = `${schedule.course?.code ?? ''} ${schedule.course?.title ?? ''}`
+  changeCurrent.textContent = `Current section: ${schedule.section}`
+  changeOptions.replaceChildren()
+  changeConfirm.disabled = true
+  for (const option of getAlternativeSections(schedule)) {
+    const label = document.createElement('label')
+    const radio = document.createElement('input')
+    radio.type = 'radio'
+    radio.name = 'section'
+    radio.value = String(option.section)
+    radio.addEventListener('change', () => { changeConfirm.disabled = false })
+    label.append(radio, document.createTextNode(`Section ${option.section}: ${toCapitalize(option.dayOfWeek)} ${option.startTime}-${option.endTime}`))
+    changeOptions.append(label, document.createElement('br'))
+  }
+  changeDialog.showModal()
+}
+
+async function handleChange(event) {
+  event.preventDefault()
+  const selected = changeOptions.querySelector('input[name="section"]:checked')
+  if (!selected || pendingChangeCourseId === null) return
+  const courseId = pendingChangeCourseId
+  const section = Number(selected.value)
+  changeConfirm.disabled = true
+  changeCancel.disabled = true
+  try {
+    const updated = await changeStudentSelection(studentId, courseId, section)
+    selections = selections.map((selection) => getCourseId(selection) === courseId ? updated : selection)
+    changeDialog.close()
+    renderTables()
+  } catch (error) {
+    changeDialog.close()
+    if (error.status === 404) {
+      showSelectionMessage('This course is not in your schedule or the section is no longer available to you.', true)
+    } else {
+      showSelectionMessage('There is a problem. Please try again later.')
+    }
+  } finally {
+    changeCancel.disabled = false
+    pendingChangeCourseId = null
+  }
 }
 
 function openRemoveDialog(schedule){
@@ -271,6 +343,7 @@ async function initPage() {
     selectionDialog,
     selectionMessageText,
     selectionMessageOk,
+    changeDialog, changeForm, changeCourse, changeCurrent, changeOptions, changeConfirm, changeCancel,
     removeDialog,
     removeDialogText,
     removeDialogConfirm,
@@ -310,6 +383,12 @@ async function initPage() {
 
       void refreshSelections()
     }
+  })
+
+  changeForm.addEventListener('submit', handleChange)
+  changeCancel.addEventListener('click', () => changeDialog.close())
+  changeDialog.addEventListener('cancel', (event) => {
+    if (changeCancel.disabled) event.preventDefault()
   })
 
   removeDialogConfirm.addEventListener('click', () => {
