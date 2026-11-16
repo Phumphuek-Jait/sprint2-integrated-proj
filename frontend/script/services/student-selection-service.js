@@ -42,4 +42,14 @@ async function createStudentSelection(studentId, courseId, section) {
   return await response.json()
 }
 
-export { loadStudentSelections, createStudentSelection }
+async function deleteStudentSelection(studentId, courseId){
+  const res = await fetch(`${apiURL}/${encodeURIComponent(studentId)}/selections/${encodeURIComponent(courseId)}`, {
+    method: 'DELETE'
+  })
+  if(!res.ok){
+    const error = new Error('Failed to delete selection')
+    error.status = res.status
+    throw error
+  }
+}
+export { loadStudentSelections, createStudentSelection, deleteStudentSelection}
