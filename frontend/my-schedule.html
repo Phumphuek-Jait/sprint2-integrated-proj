@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Schedule</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="Create.css" />
   </head>
   <body>
@@ -14,10 +15,29 @@
 
       <div id="user-info" hidden>
         <span id="user-display-name" data-testid="user-name"></span>
+=======
+    <link rel="stylesheet" href="Create.css">
+</head>
 
-        <button id="sign-out-button" type="button" disabled>Sign Out</button>
-      </div>
+<body>
+    <main>
+        <p id="auth-status" role="status" aria-live="polite">
+            Checking your sign-in with KMUTT account...
+        </p>
 
+        <div id="user-info"  hidden>
+            <span id="user-display-name" data-testid="user-name"></span>
+            <button id="sign-out-button" type="button" disabled>
+                Sign Out
+            </button>
+        </div>
+>>>>>>> 15b2fa44807f3714b6aaa7ece4cac75e8e594c6c
+
+        <p id="not-student-message" data-testid="not-student" hidden>
+            Your account is not a student of the BSc.IT program.
+        </p>
+
+<<<<<<< HEAD
       <!-- Student Profile -->
       <p id="student-profile" data-testid="student-profile" hidden></p>
 
@@ -63,8 +83,69 @@
           <tbody id="course-options-body"></tbody>
         </table>
       </section>
+=======
+        <p id="lecturer-message" data-testid="lecturer-message" hidden>
+            The lecturer view is coming soon
+        </p>
+
+        <section id="my-schedule-section" hidden>
+            <h2>My Schedule</h2>
+
+            <p id="student-profile" data-testid="student-profile"></p>
+
+            <table data-testid="my-schedule">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Section</th>
+                        <th>Group</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Weeks</th>
+                        <th>Room</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody id="my-schedule-body"></tbody>
+            </table>
+        </section>
+
+        <section id="course-options-section" hidden>
+            <h2>Courses to Choose</h2>
+
+            <table data-testid="course-options">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Section</th>
+                        <th>Group</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Weeks</th>
+                        <th>Room</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody id="course-options-body"></tbody>
+            </table>
+        </section>
+
+        <dialog id="error-modal" class="error-modal-overlay" closedby="none">
+            <div class="error-modal-content">
+                <p>There is a problem. Please try again later.</p>
+            </div>
+        </dialog>
+        <dialog id="selection-message">
+            <p id="selection-message-text"></p>
+            <button id="selection-message-ok" type="button">OK</button>
+        </dialog>
+>>>>>>> 15b2fa44807f3714b6aaa7ece4cac75e8e594c6c
     </main>
 
     <script type="module" src="./script/my-schedule.js"></script>
-  </body>
+</body>
 </html>

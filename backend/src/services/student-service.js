@@ -36,7 +36,6 @@ export const getStudentProfileById = async (id) => {
     };
 }
 
-
 export const deleteStudentSelections = async (id) => {
     const student = await getStudentProfileById(id)
     
@@ -51,6 +50,7 @@ export const deleteStudentSelections = async (id) => {
     });
     return true;
 }
+
 export const getStudentSelections = async (id) => {
     const student = await getStudentProfileById(id);
     if (!student) {
@@ -87,3 +87,37 @@ export const createStudentSelection = async (id, courseId, section) => {
         data: { studentId: id, courseId, section, createdAt: now, updatedAt: now },
     });
 };
+
+export const deleteStudentSelectionsByCourse = async (studentId, courseId) => {
+    const student = await getStudentProfileById(studentId)
+    if(!student){
+        throw new AppError(`Student ${studentId} not found.`, 404);
+    }
+
+    const parsedCourseId = Number(courseId)
+    if(!Number.isInteger(parsedCourseId) || parsedCourseId <= 0){
+        throw new AppError(`Selection for course ${courseId} not found`, 404);
+    }
+
+    const existingSelection = await prisma.selection.findUnique({
+        where: {
+            studentId_courseId : {
+                studentId: String(studentId),
+                courseId: parsedCourseId
+            }
+        }
+    });
+
+    if(!existingSelection){
+        throw new AppError(`Selection for course ${courseId} not found.`, 404)
+    }
+
+    await prisma.selection.delete({
+        where: {
+            studentId_courseId: {
+                studentId: String(studentId),
+                courseId: parsedCourseId
+            }
+        }
+    });
+}

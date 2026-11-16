@@ -137,11 +137,9 @@ async function initPage() {
       'Unable to sign in. Please reload the page or contact the administrator.'
 
     authStatus.hidden = false
-
     userSection.hidden = true
     signOutButton.disabled = true
   }
 }
 
-// Start application
 initPage()

@@ -81,8 +81,8 @@ model Selection {
   studentId String   @map("student_id")
   courseId  Int      @map("course_id")
   section   Int
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at") @db.DateTime(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.DateTime(3)
 
   @@id([studentId, courseId])
   @@map("selections")
