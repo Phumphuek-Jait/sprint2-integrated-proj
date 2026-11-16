@@ -1,23 +1,25 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Schedule</title>
     <link rel="stylesheet" href="Create.css" />
   </head>
+
   <body>
     <main>
+      <!-- Authentication Status -->
       <p id="auth-status" role="status" aria-live="polite">
         Checking your sign-in with KMUTT account...
       </p>
 
+      <!-- User Information -->
       <div id="user-info" hidden>
         <span id="user-display-name" data-testid="user-name"></span>
 
-         <button id="sign-out-button" type="button" disabled>
-          Sign Out
-         </button>
+        <button id="sign-out-button" type="button" disabled>Sign Out</button>
+      </div>
 
       <!-- Student Profile -->
       <p id="student-profile" data-testid="student-profile" hidden></p>
@@ -37,16 +39,11 @@
         The lecturer view is coming soon
       </p>
 
-      <!-- Error Dialog -->
-      <dialog id="error-modal" class="error-modal-overlay" closedby="none">
-        <div class="error-modal-content">
-          <p>There is a problem. Please try again later.</p>
-        </div>
-      </dialog>
+      <!-- My Schedule -->
+      <section id="my-schedule-section" hidden>
+        <h2>My Schedule</h2>
 
-      <section id="course-options-section" hidden>
-        <h2>Courses to Choose</h2>
-        <table data-testid="course-options">
+        <table data-testid="my-schedule">
           <thead>
             <tr>
               <th>Code</th>
@@ -61,11 +58,51 @@
               <th>Remarks</th>
             </tr>
           </thead>
+
+          <tbody id="my-schedule-body"></tbody>
+        </table>
+      </section>
+
+      <!-- Courses to Choose -->
+      <section id="course-options-section" hidden>
+        <h2>Courses to Choose</h2>
+
+        <table data-testid="course-options">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Title</th>
+              <th>Type</th>
+              <th>Section</th>
+              <th>Group</th>
+              <th>Day</th>
+              <th>Time</th>
+              <th>Weeks</th>
+              <th>Room</th>
+              <th>Remarks</th>
+              <th scope="col" aria-label="Actions"></th>
+            </tr>
+          </thead>
+
           <tbody id="course-options-body"></tbody>
         </table>
       </section>
+
+      <!-- Error Dialog -->
+      <dialog id="error-modal" class="error-modal-overlay" closedby="none">
+        <div class="error-modal-content">
+          <p>There is a problem. Please try again later.</p>
+        </div>
+      </dialog>
+
+      <!-- Selection Message Dialog -->
+      <dialog id="selection-message">
+        <p id="selection-message-text"></p>
+
+        <button id="selection-message-ok" type="button">OK</button>
+      </dialog>
     </main>
 
     <script type="module" src="./script/my-schedule.js"></script>
-</body>
+  </body>
 </html>
