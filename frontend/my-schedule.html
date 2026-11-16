@@ -18,6 +18,31 @@
         <button id="sign-out-button" type="button" disabled>Sign Out</button>
       </div>
 
+      <!-- Student Profile -->
+      <p id="student-profile" data-testid="student-profile" hidden></p>
+
+      <!-- Not a BSc.IT Student -->
+      <p id="not-student" data-testid="not-student" role="status" hidden>
+        Your account is not a student of the BSc.IT program.
+      </p>
+
+      <!-- Lecturer Message -->
+      <p
+        id="lecturer-message"
+        data-testid="lecturer-message"
+        role="status"
+        hidden
+      >
+        The lecturer view is coming soon
+      </p>
+
+      <!-- Error Dialog -->
+      <dialog id="error-modal" class="error-modal-overlay" closedby="none">
+        <div class="error-modal-content">
+          <p>There is a problem. Please try again later.</p>
+        </div>
+      </dialog>
+
       <section id="course-options-section" hidden>
         <h2>Courses to Choose</h2>
         <table data-testid="course-options">
