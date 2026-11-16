@@ -1,4 +1,6 @@
 import {prisma} from '../configs/prisma-client.js'
+import { getSchedulesByYearLevelAndGroup } from './schedule-service.js'
+import { AppError } from '../middlewares/error-handler.js'
 
 export const getStudentProfileById = async (id) => {
     if(!/^[0-9]{11}$/.test(id)) {
@@ -34,3 +36,54 @@ export const getStudentProfileById = async (id) => {
     };
 }
 
+
+export const deleteStudentSelections = async (id) => {
+    const student = await getStudentProfileById(id)
+    
+    if(!student){
+        return null;
+    }
+
+    await prisma.selection.deleteMany({ //ลบข้อมูลหลายรายการ
+        where: {
+            studentId: id
+        }
+    });
+    return true;
+}
+export const getStudentSelections = async (id) => {
+    const student = await getStudentProfileById(id);
+    if (!student) {
+        return null;
+    }
+
+    return prisma.selection.findMany({
+        where: { studentId: id },
+        orderBy: { courseId: 'asc' },
+    });
+};
+
+export const createStudentSelection = async (id, courseId, section) => {
+    const student = await getStudentProfileById(id);
+    if (!student) throw new AppError('Student not found.', 404);
+
+    if (!Number.isInteger(courseId) || courseId <= 0 || !Number.isInteger(section) || section <= 0) {
+        throw new AppError('courseId and section must be positive integers.', 400);
+    }
+
+    const existing = await prisma.selection.findUnique({
+        where: { studentId_courseId: { studentId: id, courseId } },
+    });
+    if (existing) throw new AppError('This course is already in your schedule.', 409);
+
+    const schedules = await getSchedulesByYearLevelAndGroup(student.yearLevel, student.studentGroup);
+    const available = schedules.some((schedule) =>
+        schedule.course.id === courseId && schedule.section === section && !schedule.fixed
+    );
+    if (!available) throw new AppError('This section is not available.', 404);
+
+    const now = new Date();
+    return prisma.selection.create({
+        data: { studentId: id, courseId, section, createdAt: now, updatedAt: now },
+    });
+};
