@@ -6,7 +6,8 @@ import { loadCourseSchedules } from './services/course-options-service.js'
 
 import {
   loadStudentSelections,
-  createStudentSelection
+  createStudentSelection,
+  deleteStudentSelection
 } from './services/student-selection-service.js'
 
 import { createCell, toCapitalize } from './utils/tableUtils.js'
@@ -36,12 +37,17 @@ const errorModal = document.getElementById('error-modal')
 const selectionDialog = document.getElementById('selection-message')
 const selectionMessageText = document.getElementById('selection-message-text')
 const selectionMessageOk = document.getElementById('selection-message-ok')
+const removeDialog = document.getElementById('remove-dialog')
+const removeDialogText = document.getElementById('remove-dialog-text')
+const removeDialogConfirm = document.getElementById('remove-dialog-confirm')
+const removeDialogCancel = document.getElementById('remove-dialog-cancel')
 
 // Application State
 let studentId = null
 let schedules = []
 let selections = []
 let refreshSelectionsAfterDialogClose = false
+let pendingRemoveCourseId = null
 
 // Get Safe Display Name
 function getDisplayName(user) {
@@ -105,7 +111,7 @@ function renderMySchedule() {
     const row = document.createElement('tr')
     const cell = document.createElement('td')
 
-    cell.colSpan = 10
+    cell.colSpan = 11
 
     cell.dataset.testid = 'my-schedule-empty'
 
@@ -119,6 +125,17 @@ function renderMySchedule() {
 
     myScheduleItems.forEach((schedule) => {
       const row = document.createElement('tr')
+      const actionCell = document.createElement('td')
+
+      if(!schedule.fixed){
+        const removeButton = document.createElement('button')
+        removeButton.type = 'button'
+        removeButton.textContent = 'Remove'
+        removeButton.addEventListener('click', () => {
+          openRemoveDialog(schedule)
+        })
+        actionCell.append(removeButton)
+      }
 
       row.dataset.testid = 'schedule-row'
 
@@ -138,7 +155,8 @@ function renderMySchedule() {
           `${schedule.startWeek ?? ''}-${schedule.endWeek ?? ''}`
         ),
         createCell('room', schedule.room),
-        createCell('remarks', schedule.remarks)
+        createCell('remarks', schedule.remarks),
+        actionCell
       )
 
       rows.append(row)
@@ -148,6 +166,30 @@ function renderMySchedule() {
   }
 
   myScheduleSection.hidden = false
+}
+
+function openRemoveDialog(schedule){
+  pendingRemoveCourseId = getCourseId(schedule)
+  removeDialogText.textContent = `Remove ${schedule.course?.code} ${schedule.course?.title} section ${schedule.section}?`
+  removeDialog.showModal()
+}
+
+async function handleConfirmRemove(){
+  const courseId = pendingRemoveCourseId
+  pendingRemoveCourseId = null
+  removeDialog.close()
+
+  try{
+    await deleteStudentSelection(studentId, courseId)
+    selections = selections.filter((s) => getCourseId(s) !== courseId)
+    renderTables()
+  }catch(error){
+    if(error.status === 404){
+      showSelectionMessage('This course is not in your schedule.', true)
+    }else{
+      showSelectionMessage('There is a problem. Please try again later.')
+    }
+  }
 }
 
 // Render Both Tables
@@ -228,7 +270,11 @@ async function initPage() {
     errorModal,
     selectionDialog,
     selectionMessageText,
-    selectionMessageOk
+    selectionMessageOk,
+    removeDialog,
+    removeDialogText,
+    removeDialogConfirm,
+    removeDialogCancel
   ]
 
   if (requiredElements.some((element) => !element)) {
@@ -264,6 +310,15 @@ async function initPage() {
 
       void refreshSelections()
     }
+  })
+
+  removeDialogConfirm.addEventListener('click', () => {
+    void handleConfirmRemove()
+  })
+
+  removeDialogCancel.addEventListener('click', () => {
+    pendingRemoveCourseId = null
+    removeDialog.close()
   })
 
   // Sign Out
