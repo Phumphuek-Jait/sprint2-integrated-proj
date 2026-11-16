@@ -4,7 +4,7 @@ import { authFetch } from '../auth.js'
 const apiURL = '/intproj26/line-yikrom3lkhmf3mmrxc2flibk/api/v1/students'
 
 // Get student profile
-async function loadStudentProfile(studentId) {
+export async function loadStudentProfile(studentId) {
   const url = `${apiURL}/${encodeURIComponent(studentId)}`
 
   const response = await authFetch(url)
