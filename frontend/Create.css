@@ -1,170 +1,177 @@
-/* Buttons */
-#buttons {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #18324a;
+  background: #f2f6fa;
+  font-synthesis: none;
 }
 
-#buttons button {
-  background-color: white;
-  color: #234e70;
-  border: 2px solid #234e70;
-  border-radius: 8px;
-  padding: 8px 18px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
+* { box-sizing: border-box; }
+
+body {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 44px clamp(18px, 4vw, 64px) 80px;
+  background: radial-gradient(ellipse at 95% 0%, #dcecf6 0, transparent 34%), #f2f6fa;
+  min-height: 100vh;
 }
 
-#buttons button:hover {
-  background-color: #234e70;
-  color: white;
-}
+h1, h2 { color: #102d46; letter-spacing: -0.035em; }
+h1 { margin: 0; font-size: clamp(2rem, 4vw, 2.9rem); line-height: 1.1; }
+h2 { margin: 0 0 18px; font-size: clamp(1.35rem, 2vw, 1.65rem); }
 
-/* Schedule Table */
-#schedule {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-}
-
-#schedule th,
-#schedule td {
-  padding: 12px 16px;
-  border: 1px solid #e2e8f0;
-  text-align: left;
-  font-size: 14px;
-}
-
-#schedule th {
-  background-color: #f8fafc;
-  color: #0f2942;
-  font-weight: 600;
-}
-
-/* Error Modal */
-.error-modal-overlay {
-  border: none;
-  padding: 0;
-  margin: auto;
-  background: transparent;
-  max-width: 90%;
-}
-
-.error-modal-overlay::backdrop {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.error-modal-content {
-  background-color: white;
-  padding: 30px 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  text-align: center;
-}
-
-.error-modal-content p {
-  margin: 0;
-  font-size: 18px;
-  color: red;
-}
-
-/* My Schedule Button */
 #page-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 20px;
+  margin-bottom: 32px;
 }
 
-.my-schedule-button {
-  display: inline-block;
-  background-color: white;
+#page-header h1::after {
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-top: 14px;
+  border-radius: 4px;
+  background: #ed9b52;
+  content: '';
+}
+
+button, .my-schedule-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid #b8cddd;
+  border-radius: 9px;
+  background: #fff;
   color: #234e70;
-  border: 2px solid #234e70;
-  border-radius: 8px;
-  padding: 8px 18px;
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
+  font: inherit;
+  font-size: .875rem;
+  font-weight: 650;
   text-decoration: none;
   cursor: pointer;
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease;
 }
+button:hover:not(:disabled), .my-schedule-button:hover {
+  border-color: #245a7c;
+  background: #eaf3f9;
+}
+button:focus-visible, .my-schedule-button:focus-visible, input:focus-visible {
+  outline: 3px solid #eaa45d;
+  outline-offset: 3px;
+}
+button:disabled { cursor: not-allowed; opacity: .48; }
 
-.my-schedule-button:hover,
-.my-schedule-button:focus-visible {
-  background-color: #234e70;
+.my-schedule-button {
+  min-height: 46px;
+  padding-inline: 20px;
+  border-color: #234e70;
+  background: #234e70;
   color: white;
+  box-shadow: 0 6px 18px #193c5624;
 }
+.my-schedule-button:hover { background: #173c58; color: white; }
 
-/* =================================
-   User Account
-================================= */
+#buttons { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+#buttons button { min-width: 76px; }
+#buttons button[aria-pressed="true"] { border-color: #234e70; background: #234e70; color: #fff; }
 
-#user-account {
+main { max-width: 100%; }
+#user-info:not([hidden]) {
   display: flex;
-  align-items: center;
   justify-content: flex-end;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
-  margin: 12px 0;
+  gap: 14px;
+  margin-bottom: 12px;
 }
-
-#user-account[hidden] {
-  display: none;
-}
-
-/* Username */
-#user-display-name {
-  color: #234e70;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-/* Sign Out Button */
-#sign-out-button {
-  background-color: white;
-  color: #234e70;
-  border: 2px solid #234e70;
+#user-display-name { color: #173c58; font-weight: 700; }
+#student-profile {
+  display: inline-block;
+  margin: 0 0 26px;
+  padding: 7px 12px;
   border-radius: 8px;
-  padding: 8px 18px;
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
+  background: #e0edf5;
+  color: #315c76;
+  font-size: .875rem;
+  font-weight: 650;
 }
+#auth-status, #not-student, #lecturer-message { color: #466579; }
+#my-schedule-section, #course-options-section { margin-top: 30px; }
 
-#sign-out-button:hover:not(:disabled),
-#sign-out-button:focus-visible {
-  background-color: #234e70;
+/* Tables remain tables for screen readers; narrow screens can scroll sideways. */
+table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #dce6ed;
+  border-radius: 14px;
+  border-spacing: 0;
+  background: white;
+  box-shadow: 0 8px 28px #20465e0b;
+}
+thead, tbody { width: 100%; }
+table th, table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #edf2f5;
+  text-align: left;
+  vertical-align: middle;
+  font-size: .875rem;
+}
+table th {
+  background: #eaf2f7;
+  color: #526e80;
+  font-size: .72rem;
+  font-weight: 750;
+  letter-spacing: .06em;
+
+  white-space: nowrap;
+}
+table td { color: #344f61; }
+table td:first-child { color: #183b56; font-weight: 700; white-space: nowrap; }
+table tbody tr:last-child td { border-bottom: 0; }
+table tbody tr:hover { background: #f7fafc; }
+table td button { min-height: 34px; margin: 2px 4px 2px 0; padding: 5px 11px; font-size: .8rem; }
+
+ dialog {
+  width: min(100% - 32px, 480px);
+  max-height: min(90vh, 700px);
+  padding: 28px;
+  border: 1px solid #dce6ed;
+  border-radius: 16px;
+  background: white;
+  color: #18324a;
+  box-shadow: 0 24px 75px #0d2b4540;
+}
+dialog::backdrop { background: #102a3db3; }
+dialog h2 { margin-bottom: 16px; }
+dialog p { line-height: 1.55; }
+dialog button { margin: 12px 8px 0 0; }
+#change-confirm, #remove-dialog-confirm, #selection-message-ok {
+  border-color: #234e70;
+  background: #234e70;
   color: white;
 }
+#change-confirm:hover:not(:disabled), #remove-dialog-confirm:hover, #selection-message-ok:hover { background: #173c58; color: white; }
+#change-options label { display: flex; gap: 10px; align-items: center; padding: 8px 0; line-height: 1.4; cursor: pointer; }
+#change-options br { display: none; }
+#change-options input { accent-color: #234e70; }
+fieldset { margin: 20px 0 4px; padding: 12px 16px; border: 1px solid #dce6ed; border-radius: 10px; }
+legend { padding: 0 5px; color: #466579; font-weight: 650; }
+.error-modal-overlay { text-align: center; }
+.error-modal-content p { margin: 0; color: #a92e37; }
 
-#sign-out-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+[hidden] { display: none !important; }
+@media (max-width: 640px) {
+  body { padding: 28px 16px 50px; }
+  #page-header { align-items: flex-start; margin-bottom: 26px; }
+  #buttons { gap: 6px; }
+  #buttons button { min-width: 0; padding-inline: 12px; }
+  table th, table td { padding: 12px; }
+  #user-info:not([hidden]) { justify-content: space-between; }
 }
-
-/* Student Profile */
-#student-profile {
-  margin-top: 12px;
-  color: #234e70;
-  font-size: 15px;
-}
-
-/* Student / Lecturer Messages */
-#not-student-message,
-#lecturer-message {
-  margin-top: 12px;
-  color: #234e70;
-}
-
-/* Respect hidden attributes */
-#student-profile[hidden],
-#not-student-message[hidden],
-#lecturer-message[hidden] {
-  display: none;
-}
+@media (prefers-reduced-motion: reduce) { button, .my-schedule-button { transition: none; } }
