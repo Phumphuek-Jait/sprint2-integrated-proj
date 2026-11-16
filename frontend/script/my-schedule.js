@@ -1,5 +1,5 @@
 
-import { requireSignIn, signOut } from "./auth.js";
+import { requireSignIn, signOut, authFetch } from "./auth.js";
 import { createCell, toCapitalize } from "./utils/tableUtils.js";
 import {getStudentProfile,loadSchedulebyYearAndGroup,getStudentSelection} from "./services/service.js";
 
@@ -7,6 +7,29 @@ const userNameElement = document.getElementById("user-display-name");
 const userSection = document.getElementById("user-info");
 const signOutButton = document.getElementById("sign-out-button");
 const authStatus = document.getElementById("auth-status");
+const selectionDialog = document.getElementById("selection-message");
+document.getElementById("selection-message-ok").addEventListener("click", () => selectionDialog.close());
+
+function showSelectionMessage(message) {
+  document.getElementById("selection-message-text").textContent = message;
+  if (!selectionDialog.open) selectionDialog.showModal();
+}
+
+async function selectCourse(studentId, schedule, button) {
+  button.disabled = true;
+  try {
+    const response = await authFetch(new URL(`api/v1/students/${encodeURIComponent(studentId)}/selections`, document.baseURI), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ courseId: schedule.course.id, section: schedule.section })
+    });
+    if (!response.ok) throw new Error(`Selection failed: ${response.status}`);
+  } catch (error) {
+    console.error(error);
+    button.disabled = false;
+    showSelectionMessage("There is a problem. Please try again later.");
+  }
+}
 
 async function initPage() {
   if (!userNameElement || !userSection || !signOutButton || !authStatus) {
@@ -120,7 +143,7 @@ async function loadMySchedule(studentId) {
     );
 
     courseOptionSection.hidden = courseOptionItems.length === 0;
-    renderTable("course-options-body", courseOptionItems);
+    renderTable("course-options-body", courseOptionItems, null, studentId);
 
   } catch (error) {
     console.error("Error loading schedule:", error);
@@ -131,7 +154,7 @@ async function loadMySchedule(studentId) {
   }
 }
 
-function renderTable(tbodyId, items, emptyMessage = null) {
+function renderTable(tbodyId, items, emptyMessage = null, studentId = null) {
   const tbody = document.getElementById(tbodyId);
   tbody.replaceChildren();
 
@@ -164,6 +187,16 @@ function renderTable(tbodyId, items, emptyMessage = null) {
       createCell("room", data?.room),
       createCell("remarks", data?.remarks)
     );
+
+    if (studentId !== null) {
+      const cell = document.createElement("td");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = "Select";
+      button.addEventListener("click", () => selectCourse(studentId, data, button));
+      cell.append(button);
+      row.append(cell);
+    }
 
     tbody.append(row);
   });
