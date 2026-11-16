@@ -15,7 +15,7 @@ function showSelectionMessage(message) {
   if (!selectionDialog.open) selectionDialog.showModal();
 }
 
-async function selectCourse(studentId, schedule, button, onSelected) {
+async function selectCourse(studentId, schedule, button, onSelected, onConflict) {
   button.disabled = true;
   try {
     const response = await authFetch(new URL(`api/v1/students/${encodeURIComponent(studentId)}/selections`, document.baseURI), {
@@ -23,6 +23,12 @@ async function selectCourse(studentId, schedule, button, onSelected) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ courseId: schedule.course.id, section: schedule.section })
     });
+    if (response.status === 409) {
+      selectionDialog.addEventListener("close", onConflict, { once: true });
+      showSelectionMessage("This course is already in your schedule.");
+      button.disabled = false;
+      return;
+    }
     if (!response.ok) throw new Error(`Selection failed: ${response.status}`);
     onSelected(await response.json());
   } catch (error) {
@@ -117,6 +123,15 @@ async function loadMySchedule(studentId) {
       renderSchedules(schedules, selections, studentId, (selection) => {
         selections.push(selection);
         refreshTables();
+      }, async () => {
+        try {
+          const currentSelections = await getStudentSelection(studentId);
+          selections.splice(0, selections.length, ...currentSelections);
+          refreshTables();
+        } catch (error) {
+          console.error(error);
+          showSelectionMessage("There is a problem. Please try again later.");
+        }
       });
     }
     refreshTables();
@@ -129,7 +144,7 @@ async function loadMySchedule(studentId) {
   }
 }
 
-function renderSchedules(schedules, selections, studentId, onSelected) {
+function renderSchedules(schedules, selections, studentId, onSelected, onConflict) {
   const myScheduleSection = document.getElementById("my-schedule-section");
   const courseOptionSection = document.getElementById("course-options-section");
   const myScheduleItems = [];
@@ -163,10 +178,10 @@ function renderSchedules(schedules, selections, studentId, onSelected) {
   );
 
   courseOptionSection.hidden = courseOptionItems.length === 0;
-  renderTable("course-options-body", courseOptionItems, null, studentId, onSelected);
+  renderTable("course-options-body", courseOptionItems, null, studentId, onSelected, onConflict);
 }
 
-function renderTable(tbodyId, items, emptyMessage = null, studentId = null, onSelected = null) {
+function renderTable(tbodyId, items, emptyMessage = null, studentId = null, onSelected = null, onConflict = null) {
   const tbody = document.getElementById(tbodyId);
   tbody.replaceChildren();
 
@@ -205,7 +220,7 @@ function renderTable(tbodyId, items, emptyMessage = null, studentId = null, onSe
       const button = document.createElement("button");
       button.type = "button";
       button.textContent = "Select";
-      button.addEventListener("click", () => selectCourse(studentId, data, button, onSelected));
+      button.addEventListener("click", () => selectCourse(studentId, data, button, onSelected, onConflict));
       cell.append(button);
       row.append(cell);
     }
