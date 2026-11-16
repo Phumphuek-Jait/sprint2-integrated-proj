@@ -131,12 +131,42 @@ async function initPage() {
       showErrorModal()
     }
   } catch (error) {
-    console.error('My Schedule sign-in failed:', error)
+    console.error("My Schedule sign-in failed:", error);
 
     authStatus.textContent =
-      'Unable to sign in. Please reload the page or contact the administrator.'
+      "Unable to sign in. Please reload the page or contact the administrator.";
 
-    authStatus.hidden = false
+    authStatus.hidden = false;
+    userSection.hidden = true;
+    signOutButton.disabled = true;
+  }
+}
+
+initPage();
+
+async function loadMySchedule(studentId) {
+  const notStudentEl = document.getElementById("not-student-message");
+  const myScheduleSection = document.getElementById("my-schedule-section");
+  const courseOptionSection = document.getElementById("course-options-section");
+  const modal = document.getElementById("error-modal");
+
+  modal.addEventListener("cancel", (event) => {
+    event.preventDefault();
+  });
+
+  try {
+    const student = await getStudentProfile(studentId);
+
+    if (!student || student.notFound) {
+      notStudentEl.hidden = false;
+      myScheduleSection.hidden = true;
+      courseOptionSection.hidden = true;
+      return;
+    }
+
+    const studentProfile = document.getElementById("student-profile");
+    studentProfile.textContent =
+      `Year ${student.yearLevel} · Group ${student.studentGroup}`;
 
     userSection.hidden = true
     signOutButton.disabled = true
