@@ -15,7 +15,7 @@ function showSelectionMessage(message) {
   if (!selectionDialog.open) selectionDialog.showModal();
 }
 
-async function selectCourse(studentId, schedule, button) {
+async function selectCourse(studentId, schedule, button, onSelected) {
   button.disabled = true;
   try {
     const response = await authFetch(new URL(`api/v1/students/${encodeURIComponent(studentId)}/selections`, document.baseURI), {
@@ -24,6 +24,7 @@ async function selectCourse(studentId, schedule, button) {
       body: JSON.stringify({ courseId: schedule.course.id, section: schedule.section })
     });
     if (!response.ok) throw new Error(`Selection failed: ${response.status}`);
+    onSelected(await response.json());
   } catch (error) {
     console.error(error);
     button.disabled = false;
@@ -112,39 +113,13 @@ async function loadMySchedule(studentId) {
       getStudentSelection(studentId)
     ]);
 
-    const myScheduleItems = [];
-    const courseOptionItems = [];
-
-    schedules.forEach((schedule) => {
-      const courseId = schedule.course?.id ?? schedule.courseId;
-
-      const matchedSelection = selections.find((sel) => {
-        const selCourseId = sel.courseId ?? sel.course?.id;
-        return selCourseId === courseId;
+    function refreshTables() {
+      renderSchedules(schedules, selections, studentId, (selection) => {
+        selections.push(selection);
+        refreshTables();
       });
-
-      if (schedule.fixed) {
-        myScheduleItems.push(schedule);
-      } else if (matchedSelection) {
-        if (schedule.section === matchedSelection.section) {
-          myScheduleItems.push(schedule);
-        }
-      } else {
-        courseOptionItems.push(schedule);
-      }
-    });
-
-    myScheduleSection.hidden = false;
-
-    renderTable(
-      "my-schedule-body",
-      myScheduleItems,
-      "No classes yet. Choose from Courses to Choose."
-    );
-
-    courseOptionSection.hidden = courseOptionItems.length === 0;
-    renderTable("course-options-body", courseOptionItems, null, studentId);
-
+    }
+    refreshTables();
   } catch (error) {
     console.error("Error loading schedule:", error);
 
@@ -154,7 +129,44 @@ async function loadMySchedule(studentId) {
   }
 }
 
-function renderTable(tbodyId, items, emptyMessage = null, studentId = null) {
+function renderSchedules(schedules, selections, studentId, onSelected) {
+  const myScheduleSection = document.getElementById("my-schedule-section");
+  const courseOptionSection = document.getElementById("course-options-section");
+  const myScheduleItems = [];
+  const courseOptionItems = [];
+
+  schedules.forEach((schedule) => {
+    const courseId = schedule.course?.id ?? schedule.courseId;
+
+    const matchedSelection = selections.find((sel) => {
+      const selCourseId = sel.courseId ?? sel.course?.id;
+      return selCourseId === courseId;
+    });
+
+    if (schedule.fixed) {
+      myScheduleItems.push(schedule);
+    } else if (matchedSelection) {
+      if (schedule.section === matchedSelection.section) {
+        myScheduleItems.push(schedule);
+      }
+    } else {
+      courseOptionItems.push(schedule);
+    }
+  });
+
+  myScheduleSection.hidden = false;
+
+  renderTable(
+    "my-schedule-body",
+    myScheduleItems,
+    "No classes yet. Choose from Courses to Choose."
+  );
+
+  courseOptionSection.hidden = courseOptionItems.length === 0;
+  renderTable("course-options-body", courseOptionItems, null, studentId, onSelected);
+}
+
+function renderTable(tbodyId, items, emptyMessage = null, studentId = null, onSelected = null) {
   const tbody = document.getElementById(tbodyId);
   tbody.replaceChildren();
 
@@ -193,7 +205,7 @@ function renderTable(tbodyId, items, emptyMessage = null, studentId = null) {
       const button = document.createElement("button");
       button.type = "button";
       button.textContent = "Select";
-      button.addEventListener("click", () => selectCourse(studentId, data, button));
+      button.addEventListener("click", () => selectCourse(studentId, data, button, onSelected));
       cell.append(button);
       row.append(cell);
     }
