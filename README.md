@@ -6,8 +6,8 @@
 - [course-options-service](frontend/script/services/course-options-service.js)
 
 ### student-selection-service
-- [student-selection-service.js createStudentSelection](frontend/script/services/student-selection-service.js#L22-L43)
-
+- [createStudentSelection](frontend/script/services/student-selection-service.js#L22-L43)
+- [changeStudentSelection](frontend/script/services/student-selection-service.js#L55-L67)
 ### script.js 
 - [showSchedule showSchedule, newRow, emptySchedule](frontend/script/script.js#L115-L158)
 
