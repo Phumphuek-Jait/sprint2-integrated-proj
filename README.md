@@ -16,7 +16,7 @@
 
 
 ### my-schedule
-- [เพิ่มปุ่ม Change](frontend/script/my-schedule.js#L147-L153)
+<!-- - [เพิ่มปุ่ม Change](frontend/script/my-schedule.js#L147-L153) -->
 - [find section](frontend/script/my-schedule.js#L187-L196)
 - [Changedialog](frontend/script/my-schedule.js#L198-L215)
 - [ChangeEventHandler](frontend/script/my-schedule.js#L217-L241)
