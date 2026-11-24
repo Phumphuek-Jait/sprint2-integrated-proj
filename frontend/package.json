@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "mock": "node script/testData/mock-server.mjs"
+  },
   "dependencies": {
     "json-server": "^1.0.0-beta.15"
   }

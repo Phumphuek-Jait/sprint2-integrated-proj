@@ -1,23 +1,3646 @@
 {
+  "health": {
+    "status": "ok",
+    "team": "ip26-line"
+  },
   "schedules": [
     {
-  "id": 1,
-  "course": {
-    "id": 1,
-    "code": "INT100",
-    "title": "Design Thinking",
-    "type": "CORE",
-    "yearLevel": 1
-  },
-  "section": 1,
-  "studentGroup": "A",
-  "dayOfWeek": "TUESDAY",
-  "startTime": "09:30",
-  "endTime": "12:30",
-  "startWeek": 1,
-  "endWeek": 5,
-  "remarks": null
-}
+      "id": 1,
+      "course": {
+        "id": 1,
+        "code": "INT100",
+        "title": "Design Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 2,
+      "course": {
+        "id": 1,
+        "code": "INT100",
+        "title": "Design Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 3,
+      "course": {
+        "id": 2,
+        "code": "INT101",
+        "title": "Discrete Mathematics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "13:30",
+      "endTime": "17:00",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 4,
+      "course": {
+        "id": 2,
+        "code": "INT101",
+        "title": "Discrete Mathematics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 5,
+      "course": {
+        "id": 4,
+        "code": "INT110",
+        "title": "Business Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 6,
+      "course": {
+        "id": 4,
+        "code": "INT110",
+        "title": "Business Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 7,
+      "course": {
+        "id": 5,
+        "code": "INT120",
+        "title": "UX/UI Design Fundamentals",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 8,
+      "course": {
+        "id": 5,
+        "code": "INT120",
+        "title": "UX/UI Design Fundamentals",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 9,
+      "course": {
+        "id": 6,
+        "code": "INT130",
+        "title": "Computing Platform Basics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 10,
+      "course": {
+        "id": 6,
+        "code": "INT130",
+        "title": "Computing Platform Basics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 11,
+      "course": {
+        "id": 6,
+        "code": "INT130",
+        "title": "Computing Platform Basics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 12,
+      "course": {
+        "id": 6,
+        "code": "INT130",
+        "title": "Computing Platform Basics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 13,
+      "course": {
+        "id": 9,
+        "code": "INT140",
+        "title": "Computational Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 14,
+      "course": {
+        "id": 9,
+        "code": "INT140",
+        "title": "Computational Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:30",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 15,
+      "course": {
+        "id": 10,
+        "code": "INT143",
+        "title": "Software Process Fundamentals",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 16,
+      "course": {
+        "id": 10,
+        "code": "INT143",
+        "title": "Software Process Fundamentals",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 17,
+      "course": {
+        "id": 15,
+        "code": "INT180",
+        "title": "Data Literacy",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 6,
+      "endWeek": 10,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 18,
+      "course": {
+        "id": 15,
+        "code": "INT180",
+        "title": "Data Literacy",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 6,
+      "endWeek": 10,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 25,
+      "course": {
+        "id": 44,
+        "code": "LNG120",
+        "title": "General English",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 39,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 26,
+      "course": {
+        "id": 44,
+        "code": "LNG120",
+        "title": "General English",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 40,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 27,
+      "course": {
+        "id": 44,
+        "code": "LNG120",
+        "title": "General English",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 41,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 19,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 20,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 21,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 3,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 22,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 4,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 23,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 5,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 24,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 6,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 28,
+      "course": {
+        "id": 7,
+        "code": "INT134",
+        "title": "System Deployment",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 29,
+      "course": {
+        "id": 7,
+        "code": "INT134",
+        "title": "System Deployment",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 30,
+      "course": {
+        "id": 11,
+        "code": "INT144",
+        "title": "Agile Software Development I",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 6,
+      "endWeek": 10,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 31,
+      "course": {
+        "id": 11,
+        "code": "INT144",
+        "title": "Agile Software Development I",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 6,
+      "endWeek": 10,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 32,
+      "course": {
+        "id": 13,
+        "code": "INT151",
+        "title": "Basic Frontend Development",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "13:30",
+      "endTime": "17:00",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 33,
+      "course": {
+        "id": 13,
+        "code": "INT151",
+        "title": "Basic Frontend Development",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 34,
+      "course": {
+        "id": 14,
+        "code": "INT161",
+        "title": "Basic Backend Development",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:00",
+      "endTime": "16:30",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 35,
+      "course": {
+        "id": 14,
+        "code": "INT161",
+        "title": "Basic Backend Development",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 36,
+      "course": {
+        "id": 16,
+        "code": "INT182",
+        "title": "Data Science and Artificial Intelligence Fundamentals",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 37,
+      "course": {
+        "id": 16,
+        "code": "INT182",
+        "title": "Data Science and Artificial Intelligence Fundamentals",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:00",
+      "endTime": "16:00",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 38,
+      "course": {
+        "id": 17,
+        "code": "INT191",
+        "title": "Relational Database Concepts and Design",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": "A",
+      "remarks": null
+    },
+    {
+      "id": 39,
+      "course": {
+        "id": 17,
+        "code": "INT191",
+        "title": "Relational Database Concepts and Design",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": "B",
+      "remarks": null
+    },
+    {
+      "id": 40,
+      "course": {
+        "id": 34,
+        "code": "INT504",
+        "title": "Integrated Project",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 41,
+      "course": {
+        "id": 45,
+        "code": "LNG202",
+        "title": "Basic Reading for Science and Technology",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 7,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "08:30",
+      "endTime": "09:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 42,
+      "course": {
+        "id": 45,
+        "code": "LNG202",
+        "title": "Basic Reading for Science and Technology",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 8,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "08:30",
+      "endTime": "09:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 43,
+      "course": {
+        "id": 45,
+        "code": "LNG202",
+        "title": "Basic Reading for Science and Technology",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 9,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:30",
+      "endTime": "10:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 44,
+      "course": {
+        "id": 45,
+        "code": "LNG202",
+        "title": "Basic Reading for Science and Technology",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 10,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:30",
+      "endTime": "10:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 45,
+      "course": {
+        "id": 3,
+        "code": "INT105",
+        "title": "Information Technology Seminar",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 46,
+      "course": {
+        "id": 3,
+        "code": "INT105",
+        "title": "Information Technology Seminar",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 2,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 47,
+      "course": {
+        "id": 8,
+        "code": "INT136",
+        "title": "Cyber Security",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 48,
+      "course": {
+        "id": 8,
+        "code": "INT136",
+        "title": "Cyber Security",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 49,
+      "course": {
+        "id": 12,
+        "code": "INT145",
+        "title": "Software Analysis and Design",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 50,
+      "course": {
+        "id": 12,
+        "code": "INT145",
+        "title": "Software Analysis and Design",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 51,
+      "course": {
+        "id": 18,
+        "code": "INT221",
+        "title": "UI Design",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 52,
+      "course": {
+        "id": 19,
+        "code": "INT251",
+        "title": "Frontend Development Framework",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 53,
+      "course": {
+        "id": 20,
+        "code": "INT261",
+        "title": "Backend Development Framework",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 54,
+      "course": {
+        "id": 21,
+        "code": "INT271",
+        "title": "Machine Learning",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 55,
+      "course": {
+        "id": 22,
+        "code": "INT272",
+        "title": "Artificial Neural Networks and Deep Learning",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 56,
+      "course": {
+        "id": 23,
+        "code": "INT273",
+        "title": "Generative Deep Learning",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 57,
+      "course": {
+        "id": 24,
+        "code": "INT293",
+        "title": "Transaction Processing",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 58,
+      "course": {
+        "id": 25,
+        "code": "INT294",
+        "title": "Data Warehouse and OLAP",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 6,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 59,
+      "course": {
+        "id": 26,
+        "code": "INT295",
+        "title": "Database Authentication and Authorization",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "13:00",
+      "endTime": "17:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 60,
+      "course": {
+        "id": 30,
+        "code": "INT401",
+        "title": "Research Methodology for Practitioners",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "SUNDAY",
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "studentGroup": null,
+      "remarks": "Classes: Jul 26–Aug 23"
+    },
+    {
+      "id": 61,
+      "course": {
+        "id": 31,
+        "code": "INT403",
+        "title": "Site Reliability Engineering (SRE)",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 62,
+      "course": {
+        "id": 32,
+        "code": "INT403",
+        "title": "Standards, Laws, and Compliances for IT Professionals",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 63,
+      "course": {
+        "id": 33,
+        "code": "INT403",
+        "title": "Digital Startup and Entrepreneurship",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "SATURDAY",
+      "startTime": "08:00",
+      "endTime": "11:00",
+      "studentGroup": null,
+      "remarks": "Classes: Jul 25–Nov 14"
+    },
+    {
+      "id": 64,
+      "course": {
+        "id": 42,
+        "code": "DSI106",
+        "title": "Digital Arts",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 65,
+      "course": {
+        "id": 43,
+        "code": "DSI111",
+        "title": "Digital Transformation",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:30",
+      "endTime": "16:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 69,
+      "course": {
+        "id": 47,
+        "code": "LNG308",
+        "title": "Technical Report Writing",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 3,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 70,
+      "course": {
+        "id": 47,
+        "code": "LNG308",
+        "title": "Technical Report Writing",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 4,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 71,
+      "course": {
+        "id": 47,
+        "code": "LNG308",
+        "title": "Technical Report Writing",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 5,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 72,
+      "course": {
+        "id": 47,
+        "code": "LNG308",
+        "title": "Technical Report Writing",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 6,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "11:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 66,
+      "course": {
+        "id": 49,
+        "code": "GEN111",
+        "title": "Man and Ethics of Living",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 67,
+      "course": {
+        "id": 49,
+        "code": "GEN111",
+        "title": "Man and Ethics of Living",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 68,
+      "course": {
+        "id": 49,
+        "code": "GEN111",
+        "title": "Man and Ethics of Living",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 3,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 73,
+      "course": {
+        "id": 27,
+        "code": "INT361",
+        "title": "Research Project I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": "Do not have class every week"
+    },
+    {
+      "id": 74,
+      "course": {
+        "id": 28,
+        "code": "INT365",
+        "title": "Information Technology Capstone Project I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": "Do not have class every week"
+    },
+    {
+      "id": 75,
+      "course": {
+        "id": 29,
+        "code": "INT371",
+        "title": "Experiential Learning Project I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": "Do not have class every week"
+    },
+    {
+      "id": 76,
+      "course": {
+        "id": 35,
+        "code": "INT511",
+        "title": "UI Design",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 77,
+      "course": {
+        "id": 36,
+        "code": "INT521",
+        "title": "Artificial Neural Networks and Deep Learning",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 78,
+      "course": {
+        "id": 37,
+        "code": "INT521",
+        "title": "Transaction Processing, Data Warehouse, and OLAP",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 79,
+      "course": {
+        "id": 38,
+        "code": "INT531",
+        "title": "Site Reliability Engineering (SRE)",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 80,
+      "course": {
+        "id": 39,
+        "code": "INT540",
+        "title": "Standards, Laws, and Compliances for IT Professionals",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 81,
+      "course": {
+        "id": 40,
+        "code": "INT540",
+        "title": "Data Analytics for Business Decision",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "13:30",
+      "endTime": "16:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 82,
+      "course": {
+        "id": 41,
+        "code": "INT540",
+        "title": "Digital Startup and Entrepreneurship",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "SATURDAY",
+      "startTime": "08:00",
+      "endTime": "11:00",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 88,
+      "course": {
+        "id": 46,
+        "code": "LNG224",
+        "title": "Oral Communication I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 4,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 89,
+      "course": {
+        "id": 46,
+        "code": "LNG224",
+        "title": "Oral Communication I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 5,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 90,
+      "course": {
+        "id": 46,
+        "code": "LNG224",
+        "title": "Oral Communication I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 6,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "16:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 91,
+      "course": {
+        "id": 48,
+        "code": "LNG320",
+        "title": "Content-based",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 5,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "13:30",
+      "endTime": "16:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 92,
+      "course": {
+        "id": 48,
+        "code": "LNG320",
+        "title": "Content-based",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 6,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "16:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 83,
+      "course": {
+        "id": 51,
+        "code": "GEN351",
+        "title": "Modern Management and Leadership",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 5,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 84,
+      "course": {
+        "id": 51,
+        "code": "GEN351",
+        "title": "Modern Management and Leadership",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 6,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 85,
+      "course": {
+        "id": 51,
+        "code": "GEN351",
+        "title": "Modern Management and Leadership",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 7,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 86,
+      "course": {
+        "id": 51,
+        "code": "GEN351",
+        "title": "Modern Management and Leadership",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 8,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    },
+    {
+      "id": 87,
+      "course": {
+        "id": 51,
+        "code": "GEN351",
+        "title": "Modern Management and Leadership",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 9,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null
+    }
   ],
-  "$schema": "./node_modules/json-server/schema.json"
+  "year-levels": [
+    {
+      "id": "1",
+      "yearLevel": 1
+    },
+    {
+      "id": "2",
+      "yearLevel": 2
+    },
+    {
+      "id": "3",
+      "yearLevel": 3
+    },
+    {
+      "id": "4",
+      "yearLevel": 4
+    }
+  ],
+  "course-options": [
+    {
+      "id": 1,
+      "course": {
+        "id": 1,
+        "code": "INT100",
+        "title": "Design Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX12/1",
+      "fixed": true
+    },
+    {
+      "id": 2,
+      "course": {
+        "id": 1,
+        "code": "INT100",
+        "title": "Design Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX12/2",
+      "fixed": true
+    },
+    {
+      "id": 3,
+      "course": {
+        "id": 2,
+        "code": "INT101",
+        "title": "Discrete Mathematics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "13:30",
+      "endTime": "17:00",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "CB2306",
+      "fixed": true
+    },
+    {
+      "id": 4,
+      "course": {
+        "id": 2,
+        "code": "INT101",
+        "title": "Discrete Mathematics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "CB2306",
+      "fixed": true
+    },
+    {
+      "id": 5,
+      "course": {
+        "id": 4,
+        "code": "INT110",
+        "title": "Business Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "CB2308",
+      "fixed": true
+    },
+    {
+      "id": 6,
+      "course": {
+        "id": 4,
+        "code": "INT110",
+        "title": "Business Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX12/2",
+      "fixed": true
+    },
+    {
+      "id": 7,
+      "course": {
+        "id": 5,
+        "code": "INT120",
+        "title": "UX/UI Design Fundamentals",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX12/1",
+      "fixed": true
+    },
+    {
+      "id": 8,
+      "course": {
+        "id": 5,
+        "code": "INT120",
+        "title": "UX/UI Design Fundamentals",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX12/1",
+      "fixed": true
+    },
+    {
+      "id": 9,
+      "course": {
+        "id": 6,
+        "code": "INT130",
+        "title": "Computing Platform Basics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "CB2308",
+      "fixed": true
+    },
+    {
+      "id": 10,
+      "course": {
+        "id": 6,
+        "code": "INT130",
+        "title": "Computing Platform Basics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX11/3-4",
+      "fixed": true
+    },
+    {
+      "id": 11,
+      "course": {
+        "id": 6,
+        "code": "INT130",
+        "title": "Computing Platform Basics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "CB2308",
+      "fixed": true
+    },
+    {
+      "id": 12,
+      "course": {
+        "id": 6,
+        "code": "INT130",
+        "title": "Computing Platform Basics",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX10/3-4",
+      "fixed": true
+    },
+    {
+      "id": 13,
+      "course": {
+        "id": 9,
+        "code": "INT140",
+        "title": "Computational Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX11/3-4",
+      "fixed": true
+    },
+    {
+      "id": 14,
+      "course": {
+        "id": 9,
+        "code": "INT140",
+        "title": "Computational Thinking",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:30",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX10/3-4",
+      "fixed": true
+    },
+    {
+      "id": 15,
+      "course": {
+        "id": 10,
+        "code": "INT143",
+        "title": "Software Process Fundamentals",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "CB2306",
+      "fixed": true
+    },
+    {
+      "id": 16,
+      "course": {
+        "id": 10,
+        "code": "INT143",
+        "title": "Software Process Fundamentals",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX12/2",
+      "fixed": true
+    },
+    {
+      "id": 17,
+      "course": {
+        "id": 15,
+        "code": "INT180",
+        "title": "Data Literacy",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 6,
+      "endWeek": 10,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX12/1",
+      "fixed": true
+    },
+    {
+      "id": 18,
+      "course": {
+        "id": 15,
+        "code": "INT180",
+        "title": "Data Literacy",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 6,
+      "endWeek": 10,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX12/2",
+      "fixed": true
+    },
+    {
+      "id": 25,
+      "course": {
+        "id": 44,
+        "code": "LNG120",
+        "title": "General English",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 39,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB1209",
+      "fixed": false
+    },
+    {
+      "id": 26,
+      "course": {
+        "id": 44,
+        "code": "LNG120",
+        "title": "General English",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 40,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB1303",
+      "fixed": false
+    },
+    {
+      "id": 27,
+      "course": {
+        "id": 44,
+        "code": "LNG120",
+        "title": "General English",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 41,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2407",
+      "fixed": false
+    },
+    {
+      "id": 19,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "ONLINE",
+      "fixed": false
+    },
+    {
+      "id": 20,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "ONLINE",
+      "fixed": false
+    },
+    {
+      "id": 21,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 3,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "ONLINE",
+      "fixed": false
+    },
+    {
+      "id": 22,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 4,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "ONLINE",
+      "fixed": false
+    },
+    {
+      "id": 23,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 5,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "ONLINE",
+      "fixed": false
+    },
+    {
+      "id": 24,
+      "course": {
+        "id": 50,
+        "code": "GEN121",
+        "title": "Learning and Problem Solving Skills",
+        "type": "CORE",
+        "yearLevel": 1
+      },
+      "section": 6,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "ONLINE",
+      "fixed": false
+    },
+    {
+      "id": 28,
+      "course": {
+        "id": 7,
+        "code": "INT134",
+        "title": "System Deployment",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX11/3-4",
+      "fixed": true
+    },
+    {
+      "id": 29,
+      "course": {
+        "id": 7,
+        "code": "INT134",
+        "title": "System Deployment",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX10/3-4",
+      "fixed": true
+    },
+    {
+      "id": 30,
+      "course": {
+        "id": 11,
+        "code": "INT144",
+        "title": "Agile Software Development I",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 6,
+      "endWeek": 10,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX12/2",
+      "fixed": true
+    },
+    {
+      "id": 31,
+      "course": {
+        "id": 11,
+        "code": "INT144",
+        "title": "Agile Software Development I",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 6,
+      "endWeek": 10,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "CB2308",
+      "fixed": true
+    },
+    {
+      "id": 32,
+      "course": {
+        "id": 13,
+        "code": "INT151",
+        "title": "Basic Frontend Development",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "13:30",
+      "endTime": "17:00",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX11/3-4",
+      "fixed": true
+    },
+    {
+      "id": 33,
+      "course": {
+        "id": 13,
+        "code": "INT151",
+        "title": "Basic Frontend Development",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX10/3-4",
+      "fixed": true
+    },
+    {
+      "id": 34,
+      "course": {
+        "id": 14,
+        "code": "INT161",
+        "title": "Basic Backend Development",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:00",
+      "endTime": "16:30",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX11/3-4",
+      "fixed": true
+    },
+    {
+      "id": 35,
+      "course": {
+        "id": 14,
+        "code": "INT161",
+        "title": "Basic Backend Development",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX10/3-4",
+      "fixed": true
+    },
+    {
+      "id": 36,
+      "course": {
+        "id": 16,
+        "code": "INT182",
+        "title": "Data Science and Artificial Intelligence Fundamentals",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX12/2",
+      "fixed": true
+    },
+    {
+      "id": 37,
+      "course": {
+        "id": 16,
+        "code": "INT182",
+        "title": "Data Science and Artificial Intelligence Fundamentals",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:00",
+      "endTime": "16:00",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX12/1",
+      "fixed": true
+    },
+    {
+      "id": 38,
+      "course": {
+        "id": 17,
+        "code": "INT191",
+        "title": "Relational Database Concepts and Design",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": "A",
+      "remarks": null,
+      "room": "LX11/3-4",
+      "fixed": true
+    },
+    {
+      "id": 39,
+      "course": {
+        "id": 17,
+        "code": "INT191",
+        "title": "Relational Database Concepts and Design",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": "B",
+      "remarks": null,
+      "room": "LX10/3-4",
+      "fixed": true
+    },
+    {
+      "id": 40,
+      "course": {
+        "id": 34,
+        "code": "INT504",
+        "title": "Integrated Project",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX12/1-2",
+      "fixed": true
+    },
+    {
+      "id": 41,
+      "course": {
+        "id": 45,
+        "code": "LNG202",
+        "title": "Basic Reading for Science and Technology",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 7,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "08:30",
+      "endTime": "09:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB1401",
+      "fixed": false
+    },
+    {
+      "id": 42,
+      "course": {
+        "id": 45,
+        "code": "LNG202",
+        "title": "Basic Reading for Science and Technology",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 8,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "08:30",
+      "endTime": "09:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB1402",
+      "fixed": false
+    },
+    {
+      "id": 43,
+      "course": {
+        "id": 45,
+        "code": "LNG202",
+        "title": "Basic Reading for Science and Technology",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 9,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:30",
+      "endTime": "10:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB1401",
+      "fixed": false
+    },
+    {
+      "id": 44,
+      "course": {
+        "id": 45,
+        "code": "LNG202",
+        "title": "Basic Reading for Science and Technology",
+        "type": "CORE",
+        "yearLevel": 2
+      },
+      "section": 10,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:30",
+      "endTime": "10:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB1402",
+      "fixed": false
+    },
+    {
+      "id": 45,
+      "course": {
+        "id": 3,
+        "code": "INT105",
+        "title": "Information Technology Seminar",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX12/1",
+      "fixed": false
+    },
+    {
+      "id": 46,
+      "course": {
+        "id": 3,
+        "code": "INT105",
+        "title": "Information Technology Seminar",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 2,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX12/2",
+      "fixed": false
+    },
+    {
+      "id": 47,
+      "course": {
+        "id": 8,
+        "code": "INT136",
+        "title": "Cyber Security",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX12/1",
+      "fixed": false
+    },
+    {
+      "id": 48,
+      "course": {
+        "id": 8,
+        "code": "INT136",
+        "title": "Cyber Security",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX12/2",
+      "fixed": false
+    },
+    {
+      "id": 49,
+      "course": {
+        "id": 12,
+        "code": "INT145",
+        "title": "Software Analysis and Design",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX12/1",
+      "fixed": false
+    },
+    {
+      "id": 50,
+      "course": {
+        "id": 12,
+        "code": "INT145",
+        "title": "Software Analysis and Design",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX12/2",
+      "fixed": false
+    },
+    {
+      "id": 51,
+      "course": {
+        "id": 18,
+        "code": "INT221",
+        "title": "UI Design",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/3-4",
+      "fixed": false
+    },
+    {
+      "id": 52,
+      "course": {
+        "id": 19,
+        "code": "INT251",
+        "title": "Frontend Development Framework",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/3",
+      "fixed": false
+    },
+    {
+      "id": 53,
+      "course": {
+        "id": 20,
+        "code": "INT261",
+        "title": "Backend Development Framework",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/1-2",
+      "fixed": false
+    },
+    {
+      "id": 54,
+      "course": {
+        "id": 21,
+        "code": "INT271",
+        "title": "Machine Learning",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/1-2",
+      "fixed": false
+    },
+    {
+      "id": 55,
+      "course": {
+        "id": 22,
+        "code": "INT272",
+        "title": "Artificial Neural Networks and Deep Learning",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 10,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/4-5",
+      "fixed": false
+    },
+    {
+      "id": 56,
+      "course": {
+        "id": 23,
+        "code": "INT273",
+        "title": "Generative Deep Learning",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/4-5",
+      "fixed": false
+    },
+    {
+      "id": 57,
+      "course": {
+        "id": 24,
+        "code": "INT293",
+        "title": "Transaction Processing",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/5",
+      "fixed": false
+    },
+    {
+      "id": 58,
+      "course": {
+        "id": 25,
+        "code": "INT294",
+        "title": "Data Warehouse and OLAP",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 6,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/5",
+      "fixed": false
+    },
+    {
+      "id": 59,
+      "course": {
+        "id": 26,
+        "code": "INT295",
+        "title": "Database Authentication and Authorization",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 11,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "13:00",
+      "endTime": "17:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/3-4",
+      "fixed": false
+    },
+    {
+      "id": 60,
+      "course": {
+        "id": 30,
+        "code": "INT401",
+        "title": "Research Methodology for Practitioners",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 5,
+      "dayOfWeek": "SUNDAY",
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "studentGroup": null,
+      "remarks": "Classes: Jul 26–Aug 23",
+      "room": "LX11/3",
+      "fixed": false
+    },
+    {
+      "id": 61,
+      "course": {
+        "id": 31,
+        "code": "INT403",
+        "title": "Site Reliability Engineering (SRE)",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX10/3-4",
+      "fixed": false
+    },
+    {
+      "id": 62,
+      "course": {
+        "id": 32,
+        "code": "INT403",
+        "title": "Standards, Laws, and Compliances for IT Professionals",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX12/1",
+      "fixed": false
+    },
+    {
+      "id": 63,
+      "course": {
+        "id": 33,
+        "code": "INT403",
+        "title": "Digital Startup and Entrepreneurship",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "SATURDAY",
+      "startTime": "08:00",
+      "endTime": "11:00",
+      "studentGroup": null,
+      "remarks": "Classes: Jul 25–Nov 14",
+      "room": "CB2312",
+      "fixed": false
+    },
+    {
+      "id": 64,
+      "course": {
+        "id": 42,
+        "code": "DSI106",
+        "title": "Digital Arts",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/3-4",
+      "fixed": false
+    },
+    {
+      "id": 65,
+      "course": {
+        "id": 43,
+        "code": "DSI111",
+        "title": "Digital Transformation",
+        "type": "ELECTIVE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:30",
+      "endTime": "16:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/1-2",
+      "fixed": false
+    },
+    {
+      "id": 69,
+      "course": {
+        "id": 47,
+        "code": "LNG308",
+        "title": "Technical Report Writing",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 3,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2305",
+      "fixed": false
+    },
+    {
+      "id": 70,
+      "course": {
+        "id": 47,
+        "code": "LNG308",
+        "title": "Technical Report Writing",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 4,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2305",
+      "fixed": false
+    },
+    {
+      "id": 71,
+      "course": {
+        "id": 47,
+        "code": "LNG308",
+        "title": "Technical Report Writing",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 5,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2305",
+      "fixed": false
+    },
+    {
+      "id": 72,
+      "course": {
+        "id": 47,
+        "code": "LNG308",
+        "title": "Technical Report Writing",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 6,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "11:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2305",
+      "fixed": false
+    },
+    {
+      "id": 66,
+      "course": {
+        "id": 49,
+        "code": "GEN111",
+        "title": "Man and Ethics of Living",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2502",
+      "fixed": false
+    },
+    {
+      "id": 67,
+      "course": {
+        "id": 49,
+        "code": "GEN111",
+        "title": "Man and Ethics of Living",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 2,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2503",
+      "fixed": false
+    },
+    {
+      "id": 68,
+      "course": {
+        "id": 49,
+        "code": "GEN111",
+        "title": "Man and Ethics of Living",
+        "type": "CORE",
+        "yearLevel": 3
+      },
+      "section": 3,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2504",
+      "fixed": false
+    },
+    {
+      "id": 73,
+      "course": {
+        "id": 27,
+        "code": "INT361",
+        "title": "Research Project I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": "Do not have class every week",
+      "room": "LX12/1-2",
+      "fixed": true
+    },
+    {
+      "id": 74,
+      "course": {
+        "id": 28,
+        "code": "INT365",
+        "title": "Information Technology Capstone Project I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": "Do not have class every week",
+      "room": "LX12/1-2",
+      "fixed": true
+    },
+    {
+      "id": 75,
+      "course": {
+        "id": 29,
+        "code": "INT371",
+        "title": "Experiential Learning Project I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "MONDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": "Do not have class every week",
+      "room": "LX12/1-2",
+      "fixed": true
+    },
+    {
+      "id": 76,
+      "course": {
+        "id": 35,
+        "code": "INT511",
+        "title": "UI Design",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:00",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/3-4",
+      "fixed": false
+    },
+    {
+      "id": 77,
+      "course": {
+        "id": 36,
+        "code": "INT521",
+        "title": "Artificial Neural Networks and Deep Learning",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/4-5",
+      "fixed": false
+    },
+    {
+      "id": 78,
+      "course": {
+        "id": 37,
+        "code": "INT521",
+        "title": "Transaction Processing, Data Warehouse, and OLAP",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "13:30",
+      "endTime": "17:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX11/5",
+      "fixed": false
+    },
+    {
+      "id": 79,
+      "course": {
+        "id": 38,
+        "code": "INT531",
+        "title": "Site Reliability Engineering (SRE)",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "FRIDAY",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX10/3-4",
+      "fixed": false
+    },
+    {
+      "id": 80,
+      "course": {
+        "id": 39,
+        "code": "INT540",
+        "title": "Standards, Laws, and Compliances for IT Professionals",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "LX12/1",
+      "fixed": false
+    },
+    {
+      "id": 81,
+      "course": {
+        "id": 40,
+        "code": "INT540",
+        "title": "Data Analytics for Business Decision",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "13:30",
+      "endTime": "16:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2312",
+      "fixed": false
+    },
+    {
+      "id": 82,
+      "course": {
+        "id": 41,
+        "code": "INT540",
+        "title": "Digital Startup and Entrepreneurship",
+        "type": "ELECTIVE",
+        "yearLevel": 4
+      },
+      "section": 1,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "SATURDAY",
+      "startTime": "08:00",
+      "endTime": "11:00",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2312",
+      "fixed": false
+    },
+    {
+      "id": 88,
+      "course": {
+        "id": 46,
+        "code": "LNG224",
+        "title": "Oral Communication I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 4,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2313",
+      "fixed": false
+    },
+    {
+      "id": 89,
+      "course": {
+        "id": 46,
+        "code": "LNG224",
+        "title": "Oral Communication I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 5,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2313",
+      "fixed": false
+    },
+    {
+      "id": 90,
+      "course": {
+        "id": 46,
+        "code": "LNG224",
+        "title": "Oral Communication I",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 6,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "16:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": null,
+      "fixed": false
+    },
+    {
+      "id": 91,
+      "course": {
+        "id": 48,
+        "code": "LNG320",
+        "title": "Content-based",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 5,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "TUESDAY",
+      "startTime": "13:30",
+      "endTime": "16:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2313",
+      "fixed": false
+    },
+    {
+      "id": 92,
+      "course": {
+        "id": 48,
+        "code": "LNG320",
+        "title": "Content-based",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 6,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "WEDNESDAY",
+      "startTime": "13:30",
+      "endTime": "16:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2313",
+      "fixed": false
+    },
+    {
+      "id": 83,
+      "course": {
+        "id": 51,
+        "code": "GEN351",
+        "title": "Modern Management and Leadership",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 5,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2605",
+      "fixed": false
+    },
+    {
+      "id": 84,
+      "course": {
+        "id": 51,
+        "code": "GEN351",
+        "title": "Modern Management and Leadership",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 6,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2602",
+      "fixed": false
+    },
+    {
+      "id": 85,
+      "course": {
+        "id": 51,
+        "code": "GEN351",
+        "title": "Modern Management and Leadership",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 7,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2603",
+      "fixed": false
+    },
+    {
+      "id": 86,
+      "course": {
+        "id": 51,
+        "code": "GEN351",
+        "title": "Modern Management and Leadership",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 8,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2604",
+      "fixed": false
+    },
+    {
+      "id": 87,
+      "course": {
+        "id": 51,
+        "code": "GEN351",
+        "title": "Modern Management and Leadership",
+        "type": "CORE",
+        "yearLevel": 4
+      },
+      "section": 9,
+      "startWeek": 1,
+      "endWeek": 15,
+      "dayOfWeek": "THURSDAY",
+      "startTime": "09:30",
+      "endTime": "12:30",
+      "studentGroup": null,
+      "remarks": null,
+      "room": "CB2504",
+      "fixed": false
+    }
+  ],
+  "students": [
+    {
+      "id": "69504504001",
+      "studentId": "69504504001",
+      "yearLevel": 1,
+      "studentGroup": "A"
+    },
+    {
+      "id": "69504504071",
+      "studentId": "69504504071",
+      "yearLevel": 1,
+      "studentGroup": "B"
+    },
+    {
+      "id": "68504504001",
+      "studentId": "68504504001",
+      "yearLevel": 2,
+      "studentGroup": "A"
+    },
+    {
+      "id": "68504504068",
+      "studentId": "68504504068",
+      "yearLevel": 2,
+      "studentGroup": "B"
+    },
+    {
+      "id": "67504504001",
+      "studentId": "67504504001",
+      "yearLevel": 3,
+      "studentGroup": "A"
+    },
+    {
+      "id": "67504504066",
+      "studentId": "67504504066",
+      "yearLevel": 3,
+      "studentGroup": "B"
+    },
+    {
+      "id": "66504504001",
+      "studentId": "66504504001",
+      "yearLevel": 4,
+      "studentGroup": "A"
+    },
+    {
+      "id": "66504504061",
+      "studentId": "66504504061",
+      "yearLevel": 4,
+      "studentGroup": "B"
+    }
+  ],
+  "selections": [
+    {
+      "id": "69504504001-44",
+      "studentId": "69504504001",
+      "courseId": 44,
+      "section": 39,
+      "createdAt": "2026-11-16T10:00:00.000Z",
+      "updatedAt": "2026-11-16T10:00:00.000Z"
+    }
+  ],
+  "academicSettings": {
+    "currentAcademicYear": 2569,
+    "programCode": "504504"
+  },
+  "studentGroupRanges": [
+    {
+      "id": 1,
+      "entryYear": 69,
+      "studentGroup": "A",
+      "fromNo": 1,
+      "toNo": 70
+    },
+    {
+      "id": 2,
+      "entryYear": 69,
+      "studentGroup": "B",
+      "fromNo": 71,
+      "toNo": 140
+    },
+    {
+      "id": 3,
+      "entryYear": 68,
+      "studentGroup": "A",
+      "fromNo": 1,
+      "toNo": 67
+    },
+    {
+      "id": 4,
+      "entryYear": 68,
+      "studentGroup": "B",
+      "fromNo": 68,
+      "toNo": 135
+    },
+    {
+      "id": 5,
+      "entryYear": 67,
+      "studentGroup": "A",
+      "fromNo": 1,
+      "toNo": 65
+    },
+    {
+      "id": 6,
+      "entryYear": 67,
+      "studentGroup": "B",
+      "fromNo": 66,
+      "toNo": 130
+    },
+    {
+      "id": 7,
+      "entryYear": 66,
+      "studentGroup": "A",
+      "fromNo": 1,
+      "toNo": 60
+    },
+    {
+      "id": 8,
+      "entryYear": 66,
+      "studentGroup": "B",
+      "fromNo": 61,
+      "toNo": 120
+    }
+  ]
 }
